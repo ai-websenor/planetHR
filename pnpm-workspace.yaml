@@ -1,0 +1,9 @@
+onlyBuiltDependencies:
+  - '@mastra/core'
+  - '@nestjs/core'
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@scarf/scarf'
+  - msgpackr-extract
+  - prisma
+  - unrs-resolver
