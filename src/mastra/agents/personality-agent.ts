@@ -35,6 +35,6 @@ export const personalityAgent = new Agent({
     '- Use specific examples and behavioral indicators',
     '- Provide confidence levels for major insights',
   ],
-  model: openai('gpt-4o'),
+  model: openai('gpt-5'),
   tools: {},
 });

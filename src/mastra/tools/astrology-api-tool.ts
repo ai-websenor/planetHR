@@ -1,6 +1,9 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
 import axios from "axios";
+import { Logger } from '@nestjs/common';
+
+const logger = new Logger('AstrologyApiTool');
 
 export const astrologyApiTool = createTool({
   id: "astrology-api",
@@ -42,7 +45,9 @@ export const astrologyApiTool = createTool({
     processing_time: z.number(),
   }),
   execute: async ({ context }) => {
+    logger.log(`Received context: ${JSON.stringify(context)}`);
     const { birthDate, birthTime, birthLocation } = context;
+    logger.log(`Generating chart for birth date: ${birthDate} at location: ${birthLocation.city}`);
     const startTime = Date.now();
     
     try {
@@ -60,6 +65,8 @@ export const astrologyApiTool = createTool({
         lon: birthLocation.longitude,
         tzone: birthLocation.timezone,
       };
+
+      logger.log(`Request data: ${JSON.stringify(requestData)}`);
 
       // Call AstrologyAPI.com Western Chart endpoint
       const response = await axios.post(
@@ -129,7 +136,7 @@ export const astrologyApiTool = createTool({
       };
 
     } catch (error) {
-      console.error('Astrology API Error:', error.message);
+      logger.error('Astrology API Error:', error);
       
       return {
         success: false,

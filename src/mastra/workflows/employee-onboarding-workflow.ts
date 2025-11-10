@@ -1,15 +1,15 @@
-import { createWorkflow, createStep } from "@mastra/core/workflows";
-import { z } from "zod";
+import { createWorkflow, createStep } from '@mastra/core/workflows';
+import { z } from 'zod';
 
 // Import tools statically
-import { databaseTool } from "../tools/database-tool";
-import { astrologyApiTool } from "../tools/astrology-api-tool";
-import { harmonicCalculationTool } from "../tools/harmonic-calculation-tool";
-import { reportFormattingTool } from "../tools/report-formatting-tool";
+import { databaseTool } from '../tools/database-tool';
+import { astrologyApiTool } from '../tools/astrology-api-tool';
+import { harmonicCalculationTool } from '../tools/harmonic-calculation-tool';
+import { reportFormattingTool } from '../tools/report-formatting-tool';
 
 // Step 1: Validate and collect birth data
 const validateBirthDataStep = createStep({
-  id: "validate-birth-data",
+  id: 'validate-birth-data',
   inputSchema: z.object({
     employeeId: z.string(),
   }),
@@ -36,8 +36,10 @@ const validateBirthDataStep = createStep({
   }),
   execute: async ({ inputData, runtimeContext }) => {
     const { employeeId } = inputData;
-    
-    
+    console.log(
+      `[Workflow: validate-birth-data] - Starting for employee ${employeeId}`,
+    );
+
     // Update processing status
     await databaseTool.execute({
       context: {
@@ -47,9 +49,9 @@ const validateBirthDataStep = createStep({
           status: 'processing',
           stage: 'birth_data_validation',
           progress: 10,
-        }
+        },
       },
-      runtimeContext
+      runtimeContext,
     });
 
     // Fetch employee data
@@ -58,7 +60,7 @@ const validateBirthDataStep = createStep({
         operation: 'fetch_employee',
         employeeId,
       },
-      runtimeContext
+      runtimeContext,
     });
 
     if (!employeeResult.success) {
@@ -66,7 +68,7 @@ const validateBirthDataStep = createStep({
     }
 
     const employee = employeeResult.data;
-    
+
     // Validate birth data completeness
     if (!employee.birthData || !employee.birthData.birthDate) {
       throw new Error('Birth date is required for personality analysis');
@@ -92,7 +94,7 @@ const validateBirthDataStep = createStep({
 
 // Step 2: Generate astrological chart data
 const generateAstrologyStep = createStep({
-  id: "generate-astrology",
+  id: 'generate-astrology',
   inputSchema: z.object({
     employeeId: z.string(),
     birthData: z.object({
@@ -132,8 +134,10 @@ const generateAstrologyStep = createStep({
   }),
   execute: async ({ inputData, runtimeContext }) => {
     const { employeeId, birthData, personalInfo } = inputData;
-    
-    
+    console.log(
+      `[Workflow: generate-astrology] - Starting for employee ${employeeId}`,
+    );
+
     // Update processing status
     await databaseTool.execute({
       context: {
@@ -143,23 +147,33 @@ const generateAstrologyStep = createStep({
           status: 'processing',
           stage: 'astrology_generation',
           progress: 25,
-        }
+        },
       },
-      runtimeContext
+      runtimeContext,
     });
 
-    // Call astrology API
-    const astroResult = await astrologyApiTool.execute({
-      context: {
+    console.log(
+      '[generate-astrology] - Calling astrologyApiTool.execute with context:',
+      {
         birthDate: birthData.birthDate,
         birthTime: birthData.birthTime,
         birthLocation: birthData.birthLocation,
       },
-      runtimeContext
+    );
+    // Call astrology API
+    const astroResult = await astrologyApiTool.execute({
+      context: {
+        birthDate: (birthData.birthDate as any).toISOString(),
+        birthTime: birthData.birthTime,
+        birthLocation: birthData.birthLocation,
+      },
+      runtimeContext,
     });
 
     if (!astroResult.success) {
-      throw new Error(`Astrology API failed: ${(astroResult as any).error || 'Unknown error'}`);
+      throw new Error(
+        `Astrology API failed: ${JSON.stringify((astroResult as any).error) || 'Unknown error'}`,
+      );
     }
 
     return {
@@ -175,7 +189,7 @@ const generateAstrologyStep = createStep({
 
 // Step 3: Calculate harmonic frequencies
 const calculateHarmonicsStep = createStep({
-  id: "calculate-harmonics",
+  id: 'calculate-harmonics',
   inputSchema: z.object({
     employeeId: z.string(),
     personalInfo: z.object({
@@ -211,8 +225,10 @@ const calculateHarmonicsStep = createStep({
   }),
   execute: async ({ inputData, runtimeContext }) => {
     const { employeeId, personalInfo, astrologicalData } = inputData;
-    
-    
+    console.log(
+      `[Workflow: calculate-harmonics] - Starting for employee ${employeeId} ${astrologicalData}`,
+    );
+
     // Update processing status
     await databaseTool.execute({
       context: {
@@ -222,9 +238,9 @@ const calculateHarmonicsStep = createStep({
           status: 'processing',
           stage: 'harmonic_calculation',
           progress: 40,
-        }
+        },
       },
-      runtimeContext
+      runtimeContext,
     });
 
     // Calculate harmonics
@@ -233,11 +249,13 @@ const calculateHarmonicsStep = createStep({
         planetPositions: astrologicalData.planets,
         calculateAllHarmonics: false, // Use key harmonics for performance
       },
-      runtimeContext
+      runtimeContext,
     });
 
     if (!harmonicResult.success) {
-      throw new Error(`Harmonic calculation failed: ${(harmonicResult as any).error || 'Unknown error'}`);
+      throw new Error(
+        `Harmonic calculation failed: ${(harmonicResult as any).error || 'Unknown error'}`,
+      );
     }
 
     // Save astrological and harmonic data to database
@@ -250,9 +268,9 @@ const calculateHarmonicsStep = createStep({
           harmonicData: harmonicResult,
           dominantFrequencies: harmonicResult.dominant_frequencies,
           energyPattern: harmonicResult.overall_energy_pattern,
-        }
+        },
       },
-      runtimeContext
+      runtimeContext,
     });
 
     return {
@@ -266,7 +284,7 @@ const calculateHarmonicsStep = createStep({
 
 // Step 4: Generate all reports in parallel
 const generateReportsStep = createStep({
-  id: "generate-reports",
+  id: 'generate-reports',
   inputSchema: z.object({
     employeeId: z.string(),
     personalInfo: z.object({
@@ -286,12 +304,14 @@ const generateReportsStep = createStep({
   }),
   outputSchema: z.object({
     employeeId: z.string(),
-    reports: z.array(z.object({
-      reportType: z.string(),
-      viewerRole: z.string(),
-      content: z.string(),
-      metadata: z.any(),
-    })),
+    reports: z.array(
+      z.object({
+        reportType: z.string(),
+        viewerRole: z.string(),
+        content: z.string(),
+        metadata: z.any(),
+      }),
+    ),
     processingStats: z.object({
       totalReports: z.number(),
       successfulReports: z.number(),
@@ -300,9 +320,12 @@ const generateReportsStep = createStep({
     }),
   }),
   execute: async ({ inputData, mastra, runtimeContext }) => {
-    const { employeeId, personalInfo, astrologicalData, harmonicData } = inputData;
-    
-    
+    const { employeeId, personalInfo, astrologicalData, harmonicData } =
+      inputData;
+    console.log(
+      `[Workflow: generate-reports] - Starting for employee ${employeeId}`,
+    );
+
     // Update processing status
     await databaseTool.execute({
       context: {
@@ -312,14 +335,26 @@ const generateReportsStep = createStep({
           status: 'processing',
           stage: 'report_generation',
           progress: 60,
-        }
+        },
       },
-      runtimeContext
+      runtimeContext,
     });
 
-    const reportTypes = ['personality', 'role', 'department', 'industry', 'team', 'training'];
+    const reportTypes = [
+      'personality',
+      'role',
+      'department',
+      'industry',
+      'team',
+      'training',
+    ];
     const viewerRoles = ['owner', 'leader', 'manager'];
-    const reports: Array<{reportType: string; viewerRole: string; content: string; metadata: any}> = [];
+    const reports: Array<{
+      reportType: string;
+      viewerRole: string;
+      content: string;
+      metadata: any;
+    }> = [];
     const startTime = Date.now();
     let successfulReports = 0;
     let failedReports = 0;
@@ -337,10 +372,10 @@ const generateReportsStep = createStep({
             team: 'teamIntegrationAgent',
             training: 'trainingDevelopmentAgent',
           };
-          
+
           const agentName = agentNameMap[reportType];
           const agent = mastra.getAgent(agentName);
-          
+
           if (!agent) {
             console.warn(`Agent ${agentName} not found, skipping report`);
             failedReports++;
@@ -348,81 +383,107 @@ const generateReportsStep = createStep({
           }
 
           // Generate report content with AI agent
-          const reportPrompt = generateReportPrompt(reportType, viewerRole, personalInfo, harmonicData);
-          
+          const reportPrompt = generateReportPrompt(
+            reportType,
+            viewerRole,
+            personalInfo,
+            harmonicData,
+          );
+
           const agentResponse = await agent.generate(reportPrompt, {
-            structuredOutput: {
-              schema: z.object({
-                executiveSummary: z.string(),
-                detailedAnalysis: z.string(),
-                strengths: z.array(z.string()),
-                developmentAreas: z.array(z.string()),
-                compatibilityScores: z.record(z.number()),
-                recommendations: z.array(z.string()),
-                insights: z.string(),
-                actionItems: z.array(z.string()),
-              }),
-            },
+            // structuredOutput: {
+            //   schema: z.object({
+            //     executiveSummary: z.string().optional(),
+            //     detailedAnalysis: z.string().optional(),
+            //     strengths: z.array(z.string()).optional(),
+            //     developmentAreas: z.array(z.string()).optional(),
+            //     compatibilityScores: z.record(z.number()).optional(),
+            //     recommendations: z.array(z.string()).optional(),
+            //     insights: z.string().optional(),
+            //     actionItems: z.array(z.string()).optional(),
+            //   }),
+            // },
             maxSteps: 3,
           });
 
+          console.log('agentResponse', convertToJSON(agentResponse.text));
           // Format the report using the formatting tool
-          const formattedReport = await reportFormattingTool.execute({
-            context: {
-              reportType: reportType as "personality" | "role" | "department" | "industry" | "team" | "training",
-              viewerRole: viewerRole as "owner" | "leader" | "manager",
-              employeeData: personalInfo,
-              aiGeneratedContent: agentResponse.object,
-              metadata: {
-                confidenceLevel: 'HIGH',
-                energyCodeBase: harmonicData.overall_energy_pattern,
-                generationTime: Date.now() - startTime,
-              },
-            },
-            runtimeContext
-          });
+          // const formattedReport = await reportFormattingTool.execute({
+          //   context: {
+          //     reportType: reportType as
+          //       | 'personality'
+          //       | 'role'
+          //       | 'department'
+          //       | 'industry'
+          //       | 'team'
+          //       | 'training',
+          //     viewerRole: viewerRole as 'owner' | 'leader' | 'manager',
+          //     employeeData: personalInfo,
+          //     aiGeneratedContent: agentResponse.object,
+          //     metadata: {
+          //       confidenceLevel: 'HIGH',
+          //       energyCodeBase: harmonicData.overall_energy_pattern,
+          //       generationTime: Date.now() - startTime,
+          //     },
+          //   },
+          //   runtimeContext,
+          // });
 
-          if (formattedReport.success) {
-            // Save report to database
-            await databaseTool.execute({
-              context: {
-                operation: 'save_report',
-                employeeId,
-                reportType: reportType as "personality" | "role" | "department" | "industry" | "team" | "training",
-                viewerRole: viewerRole as "owner" | "leader" | "manager",
-                data: {
-                  content: formattedReport.formattedReport,
-                  metadata: {
-                    wordCount: formattedReport.wordCount,
-                    estimatedReadTime: formattedReport.estimatedReadTime,
-                    confidenceLevel: 'HIGH',
-                    energyCodeBase: harmonicData.overall_energy_pattern,
-                  },
-                  confidenceLevel: 'HIGH',
-                  energyCodeBase: harmonicData.overall_energy_pattern,
-                  organization: personalInfo.organization,
-                },
-              },
-              runtimeContext
-            });
+          // if (formattedReport.success) {
+          //   // Save report to database
+          //   await databaseTool.execute({
+          //     context: {
+          //       operation: 'save_report',
+          //       employeeId,
+          //       reportType: reportType as
+          //         | 'personality'
+          //         | 'role'
+          //         | 'department'
+          //         | 'industry'
+          //         | 'team'
+          //         | 'training',
+          //       viewerRole: viewerRole as 'owner' | 'leader' | 'manager',
+          //       data: {
+          //         content: formattedReport.formattedReport,
+          //         metadata: {
+          //           wordCount: formattedReport.wordCount,
+          //           estimatedReadTime: formattedReport.estimatedReadTime,
+          //           confidenceLevel: 'HIGH',
+          //           energyCodeBase: harmonicData.overall_energy_pattern,
+          //         },
+          //         confidenceLevel: 'HIGH',
+          //         energyCodeBase: harmonicData.overall_energy_pattern,
+          //         organization: personalInfo.organization,
+          //       },
+          //     },
+          //     runtimeContext,
+          //   });
 
-            reports.push({
-              reportType: reportType as "personality" | "role" | "department" | "industry" | "team" | "training",
-              viewerRole: viewerRole as "owner" | "leader" | "manager", 
-              content: formattedReport.formattedReport,
-              metadata: {
-                wordCount: formattedReport.wordCount,
-                estimatedReadTime: formattedReport.estimatedReadTime,
-              },
-            });
+          //   reports.push({
+          //     reportType: reportType as
+          //       | 'personality'
+          //       | 'role'
+          //       | 'department'
+          //       | 'industry'
+          //       | 'team'
+          //       | 'training',
+          //     viewerRole: viewerRole as 'owner' | 'leader' | 'manager',
+          //     content: formattedReport.formattedReport,
+          //     metadata: {
+          //       wordCount: formattedReport.wordCount,
+          //       estimatedReadTime: formattedReport.estimatedReadTime,
+          //     },
+          //   });
 
-            successfulReports++;
-          } else {
-            failedReports++;
-          }
-
+          //   successfulReports++;
+          // } else {
+          failedReports++;
+          // }
         } catch (error) {
-          console.error(`Failed to generate ${reportType} report for ${viewerRole}:`, error.message);
+          console.error(
+            `Failed to generate ${reportType} report for ${viewerRole}:`,
+            error.message,
+          );
           failedReports++;
         }
       }
@@ -443,15 +504,17 @@ const generateReportsStep = createStep({
 
 // Step 5: Complete processing and notify
 const completeProcessingStep = createStep({
-  id: "complete-processing",
+  id: 'complete-processing',
   inputSchema: z.object({
     employeeId: z.string(),
-    reports: z.array(z.object({
-      reportType: z.string(),
-      viewerRole: z.string(),
-      content: z.string(),
-      metadata: z.any(),
-    })),
+    reports: z.array(
+      z.object({
+        reportType: z.string(),
+        viewerRole: z.string(),
+        content: z.string(),
+        metadata: z.any(),
+      }),
+    ),
     processingStats: z.object({
       totalReports: z.number(),
       successfulReports: z.number(),
@@ -470,8 +533,10 @@ const completeProcessingStep = createStep({
   }),
   execute: async ({ inputData, runtimeContext }) => {
     const { employeeId, reports, processingStats } = inputData;
-    
-    
+    console.log(
+      `[Workflow: complete-processing] - Starting for employee ${employeeId}`,
+    );
+
     // Update final processing status
     await databaseTool.execute({
       context: {
@@ -481,10 +546,12 @@ const completeProcessingStep = createStep({
           status: 'completed',
           stage: 'completed',
           progress: 100,
-          completedReports: reports.map(r => `${r.reportType}-${r.viewerRole}`),
-        }
+          completedReports: reports.map(
+            (r) => `${r.reportType}-${r.viewerRole}`,
+          ),
+        },
       },
-      runtimeContext
+      runtimeContext,
     });
 
     return {
@@ -501,7 +568,7 @@ const completeProcessingStep = createStep({
 
 // Main workflow definition
 export const employeeOnboardingWorkflow = createWorkflow({
-  id: "employee-onboarding-workflow",
+  id: 'employee-onboarding-workflow',
   inputSchema: z.object({
     employeeId: z.string(),
   }),
@@ -522,8 +589,31 @@ export const employeeOnboardingWorkflow = createWorkflow({
   .then(completeProcessingStep)
   .commit();
 
+function convertToJSON(inputString) {
+  try {
+    // Step 1: Remove unnecessary concatenation or escaped newlines if present
+    const cleaned = inputString
+      .replace(/\\n/g, '\n') // Convert escaped \n back to real newlines
+      .replace(/\\'/g, "'") // Convert escaped single quotes
+      .replace(/\\"/g, '"'); // Convert escaped double quotes
+
+    // Step 2: Parse into actual JSON object
+    const jsonObject = JSON.parse(cleaned);
+
+    return jsonObject;
+  } catch (error) {
+    console.error('Invalid JSON string:', error.message);
+    return null;
+  }
+}
+
 // Helper function to generate appropriate prompts for each report type
-function generateReportPrompt(reportType: string, viewerRole: string, personalInfo: any, harmonicData: any): string {
+function generateReportPrompt(
+  reportType: string,
+  viewerRole: string,
+  personalInfo: any,
+  harmonicData: any,
+): string {
   const baseContext = `
 Employee Information:
 - Name: ${personalInfo.name}
@@ -533,7 +623,7 @@ Employee Information:
 
 Energy Pattern Analysis (translate to business psychology):
 - Primary Pattern: ${harmonicData.overall_energy_pattern}
-- Dominant Frequencies: ${harmonicData.dominant_frequencies.map(f => f.harmonic).join(', ')}
+- Dominant Frequencies: ${harmonicData.dominant_frequencies.map((f) => f.harmonic).join(', ')}
 - Energy Distribution: ${JSON.stringify(harmonicData.dominant_frequencies)}
 
 Report Requirements:
@@ -543,18 +633,25 @@ Report Requirements:
 `;
 
   const roleSpecificInstructions = {
-    owner: "Provide strategic business impact, ROI analysis, succession planning insights, and long-term value assessment.",
-    leader: "Focus on department optimization, team performance, cross-functional coordination, and leadership development.",
-    manager: "Emphasize daily management, task assignment, immediate performance, and practical action items."
+    owner:
+      'Provide strategic business impact, ROI analysis, succession planning insights, and long-term value assessment.',
+    leader:
+      'Focus on department optimization, team performance, cross-functional coordination, and leadership development.',
+    manager:
+      'Emphasize daily management, task assignment, immediate performance, and practical action items.',
   };
 
   const reportSpecificInstructions = {
-    personality: "Analyze core personality traits, work style preferences, communication patterns, and behavioral indicators.",
-    role: "Evaluate job fit, performance prediction, career development potential, and role optimization recommendations.",
-    department: "Assess department culture fit, team integration, workflow compatibility, and collaborative potential.",
-    industry: "Analyze industry alignment, market dynamics fit, competitive advantages, and long-term industry success potential.",
-    team: "Focus on team dynamics, collaboration style, leadership contribution, and group performance optimization.",
-    training: "Provide personalized learning recommendations, skill development priorities, and growth planning."
+    personality:
+      'Analyze core personality traits, work style preferences, communication patterns, and behavioral indicators.',
+    role: 'Evaluate job fit, performance prediction, career development potential, and role optimization recommendations.',
+    department:
+      'Assess department culture fit, team integration, workflow compatibility, and collaborative potential.',
+    industry:
+      'Analyze industry alignment, market dynamics fit, competitive advantages, and long-term industry success potential.',
+    team: 'Focus on team dynamics, collaboration style, leadership contribution, and group performance optimization.',
+    training:
+      'Provide personalized learning recommendations, skill development priorities, and growth planning.',
   };
 
   return `${baseContext}
@@ -571,6 +668,19 @@ Generate a comprehensive analysis with:
 5. Compatibility scores (0-100) for relevant categories
 6. Specific recommendations for the ${viewerRole}
 7. Actionable insights and next steps
+
+schema: z.object({
+    executiveSummary: z.string(),
+   detailedAnalysis: z.string(),
+   strengths: z.array(z.string()),
+   developmentAreas: z.array(z.string()),
+   compatibilityScores: z.record(z.number()),
+   recommendations: z.array(z.string()),
+   insights: z.string(),
+   actionItems: z.array(z.string()),
+ }),
+
+ make sure response is valid json no other text then JSON do not add => \n' + it should be stringifyed JSON
 
 Remember: Never mention astrology, harmonic codes, or metaphysical concepts. Frame everything as data-driven personality analysis and behavioral pattern recognition.`;
 }

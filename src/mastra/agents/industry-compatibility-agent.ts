@@ -35,6 +35,6 @@ export const industryCompatibilityAgent = new Agent({
     '- Potential for industry thought leadership and expertise',
     '- Long-term industry career trajectory and opportunities',
   ],
-  model: openai('gpt-4o'),
+  model: openai('gpt-5'),
   tools: {},
 });

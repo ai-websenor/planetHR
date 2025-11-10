@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Employee } from './schemas/employee.schema';
@@ -7,12 +7,15 @@ import { CreateEmployeeDto } from './dto/create-employee.dto';
 
 @Injectable()
 export class EmployeesService {
+  private readonly logger = new Logger(EmployeesService.name);
+
   constructor(
     @InjectModel(Employee.name) private employeeModel: Model<Employee>,
     @InjectModel(Report.name) private reportModel: Model<Report>,
   ) {}
 
   async create(createEmployeeDto: CreateEmployeeDto, user: any): Promise<Employee> {
+    this.logger.log(`[create] - Creating employee for organization ${user.organizationId} by user ${user.email}`);
     const employee = new this.employeeModel({
       ...createEmployeeDto,
       organization: user.organizationId,

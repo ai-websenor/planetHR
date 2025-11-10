@@ -39,6 +39,6 @@ export const teamIntegrationAgent = new Agent({
 
     'Always provide specific examples of successful team scenarios and potential challenges.',
   ],
-  model: openai('gpt-4o'),
+  model: openai('gpt-5'),
   tools: {},
 });

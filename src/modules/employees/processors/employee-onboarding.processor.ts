@@ -12,6 +12,8 @@ export class EmployeeOnboardingProcessor {
 
   @Process('generate-reports')
   async handleEmployeeOnboarding(job: Job) {
+    this.logger.log(`[handleEmployeeOnboarding] - Processing job ${job.id} for employee ${job.data.employeeId}`);
+    this.logger.debug(`[handleEmployeeOnboarding] - Job data: ${JSON.stringify(job.data)}`);
     const { employeeId, triggeredBy } = job.data;
     
     this.logger.log(`Starting employee onboarding process for ${employeeId}`);

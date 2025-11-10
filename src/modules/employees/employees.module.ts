@@ -12,6 +12,7 @@ import { Report, ReportSchema } from '../reports/schemas/report.schema';
 
 import { NotificationModule } from '../notifications/notification.module';
 import { EmailModule } from '../email/email.module';
+import { MastraModule } from '../mastra/mastra.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { EmailModule } from '../email/email.module';
     }),
     NotificationModule,
     EmailModule,
+    MastraModule,
   ],
   controllers: [EmployeesController],
   providers: [

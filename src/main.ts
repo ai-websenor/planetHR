@@ -79,13 +79,13 @@ async function bootstrap() {
     }),
   );
 
+  // Global prefix
+  app.setGlobalPrefix('api');
+
   // Swagger documentation
   if (configService.get('features.enableSwagger')) {
     setupSwagger(app);
   }
-
-  // Global prefix
-  app.setGlobalPrefix('api');
 
   // Start server
   const port = configService.get('port') as number || 3000;

@@ -36,6 +36,6 @@ export const roleCompatibilityAgent = new Agent({
 
     'Always provide specific examples of how personality traits translate to role performance.',
   ],
-  model: openai('gpt-4o'),
+  model: openai('gpt-5'),
   tools: {},
 });

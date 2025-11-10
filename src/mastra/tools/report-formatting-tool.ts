@@ -17,14 +17,14 @@ export const reportFormattingTool = createTool({
       organization: z.string(),
     }),
     aiGeneratedContent: z.object({
-      executiveSummary: z.string(),
-      detailedAnalysis: z.string(),
-      strengths: z.array(z.string()),
-      developmentAreas: z.array(z.string()),
-      compatibilityScores: z.record(z.number()),
-      recommendations: z.array(z.string()),
-      insights: z.string(),
-      actionItems: z.array(z.string()),
+      executiveSummary: z.string().optional(),
+      detailedAnalysis: z.string().optional(),
+      strengths: z.array(z.string()).optional(),
+      developmentAreas: z.array(z.string()).optional(),
+      compatibilityScores: z.record(z.number()).optional(),
+      recommendations: z.array(z.string()).optional(),
+      insights: z.string().optional(),
+      actionItems: z.array(z.string()).optional(),
     }),
     metadata: z.object({
       confidenceLevel: z.enum(['HIGH', 'MEDIUM', 'LOW']),
@@ -40,6 +40,7 @@ export const reportFormattingTool = createTool({
   }),
   execute: async ({ context }) => {
     const { reportType, viewerRole, employeeData, aiGeneratedContent, metadata } = context;
+    console.log(`[ReportFormattingTool] - Formatting report ${reportType} for viewer ${viewerRole}`);
     try {
       // Load the master template
       const templatePath = join(process.cwd(), 'reports', 'master-template.md');

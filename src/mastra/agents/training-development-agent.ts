@@ -45,6 +45,6 @@ export const trainingDevelopmentAgent = new Agent({
     '- Performance improvement indicators',
     '- Career advancement milestones',
   ],
-  model: openai('gpt-4o'),
+  model: openai('gpt-5'),
   tools: {},
 });

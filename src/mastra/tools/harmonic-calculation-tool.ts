@@ -42,6 +42,7 @@ export const harmonicCalculationTool = createTool({
   }),
   execute: async ({ context }) => {
     const { planetPositions, calculateAllHarmonics } = context;
+    console.log(`[HarmonicCalculationTool] - Starting harmonic calculation.`);
     const startTime = Date.now();
     
     try {

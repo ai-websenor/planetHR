@@ -7,6 +7,8 @@ import { Report } from '../reports/schemas/report.schema';
 
 @Injectable()
 export class MastraService implements OnModuleInit {
+  private context: Map<string, any>;
+
   constructor(
     @InjectModel(Employee.name) private employeeModel: Model<Employee>,
     @InjectModel(Report.name) private reportModel: Model<Report>,
@@ -17,14 +19,18 @@ export class MastraService implements OnModuleInit {
     // This allows Mastra tools to access the database models
     if (mastra) {
       // Set up context for database tool
-      const context = new Map();
-      context.set('employeeModel', this.employeeModel);
-      context.set('reportModel', this.reportModel);
+      this.context = new Map();
+      this.context.set('employeeModel', this.employeeModel);
+      this.context.set('reportModel', this.reportModel);
       
       // Note: In a real implementation, we would pass this context
       // through the workflow execution. For now, this demonstrates
       // how the integration would work.
     }
+  }
+
+  getContext(): Map<string, any> {
+    return this.context;
   }
 
   async generatePersonalityReport(employeeId: string, userRole: string) {

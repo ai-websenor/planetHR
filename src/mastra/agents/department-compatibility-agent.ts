@@ -36,6 +36,6 @@ export const departmentCompatibilityAgent = new Agent({
     '- Risk factors and management strategies',
     '- Optimization suggestions for department productivity',
   ],
-  model: openai('gpt-4o'),
+  model: openai('gpt-5'),
   tools: {},
 });

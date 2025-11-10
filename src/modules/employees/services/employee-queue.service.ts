@@ -19,6 +19,7 @@ export class EmployeeQueueService {
       organizationId: string;
     }
   ) {
+    this.logger.log(`[queueEmployeeOnboarding] - Queuing employee ${employeeId} triggered by ${triggeredBy.email}`);
     try {
       const job = await this.onboardingQueue.add(
         'generate-reports',
