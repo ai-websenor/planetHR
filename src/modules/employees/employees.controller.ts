@@ -7,7 +7,7 @@ import {
   UseGuards,
   Logger,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { EmployeesService } from './employees.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { mastra } from '../../mastra';
@@ -15,6 +15,7 @@ import { RuntimeContext } from '@mastra/core/runtime-context';
 import { MastraService } from '../mastra/mastra.service';
 
 @ApiTags('Employees')
+@ApiBearerAuth('JWT-auth')
 @Controller('employees')
 export class EmployeesController {
   private readonly logger = new Logger(EmployeesController.name);

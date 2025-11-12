@@ -138,10 +138,11 @@ export const databaseTool = createTool({
   },
 });
 
-databaseTool.execute('update_processing_status', {
-  employeeId: '12345',
-  status: 'IN_PROGRESS',
-  stage: 'STAGE_2',
-  progress: 50,
-  completedReports: ['report1', 'report2'],
-});
+// Example usage - commented out to avoid compilation errors
+// databaseTool.execute('update_processing_status', {
+//   employeeId: '12345',
+//   status: 'IN_PROGRESS',
+//   stage: 'STAGE_2',
+//   progress: 50,
+//   completedReports: ['report1', 'report2'],
+// });

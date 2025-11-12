@@ -32,6 +32,8 @@ export function setupSwagger(app: INestApplication): void {
 
   const document = SwaggerModule.createDocument(app, config, {
     operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
+    // Don't apply security globally - let individual endpoints specify via @ApiBearerAuth
+    ignoreGlobalPrefix: false,
   });
 
   SwaggerModule.setup('api/docs', app, document, {
