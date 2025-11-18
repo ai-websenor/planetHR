@@ -21,6 +21,8 @@ import { ReportsModule } from './modules/reports/reports.module';
 import { NotificationModule } from './modules/notifications/notification.module';
 import { EmailModule } from './modules/email/email.module';
 import { MastraModule } from './modules/mastra/mastra.module';
+import { HarmonicsModule } from './modules/harmonics/harmonics.module';
+import { ApiLogsModule } from './modules/api-logs/api-logs.module';
 
 // Import guards
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
@@ -61,6 +63,8 @@ import { RolesGuard } from './common/guards/roles.guard';
     NotificationModule,
     EmailModule,
     MastraModule,
+    HarmonicsModule,
+    ApiLogsModule,
   ],
   controllers: [AppController],
   providers: [

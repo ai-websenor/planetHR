@@ -22,8 +22,8 @@ export const personalityAgent = new Agent({
     '5. GROWTH AREAS: Identify development opportunities and learning preferences',
 
     'OUTPUT REQUIREMENTS:',
-    '- Executive summary with key personality indicators (100-150 words)',
-    '- Detailed personality breakdown with specific traits and business applications',
+    '- Quick summary with key personality indicators (100 words)',
+    '- What this person is Naturally Good At',
     '- 3-5 core strengths with workplace examples',
     '- 2-3 development areas with specific improvement suggestions',
     '- Compatibility scores for role fit, team dynamics, and communication style',

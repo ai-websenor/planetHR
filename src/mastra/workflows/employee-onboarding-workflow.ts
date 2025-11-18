@@ -166,6 +166,8 @@ const generateAstrologyStep = createStep({
         birthDate: (birthData.birthDate as any).toISOString(),
         birthTime: birthData.birthTime,
         birthLocation: birthData.birthLocation,
+        employeeId,
+        organization: personalInfo.organization,
       },
       runtimeContext,
     });
@@ -187,7 +189,7 @@ const generateAstrologyStep = createStep({
   },
 });
 
-// Step 3: Calculate harmonic frequencies
+// Step 3: Calculate harmonic frequencies and save to separate collections
 const calculateHarmonicsStep = createStep({
   id: 'calculate-harmonics',
   inputSchema: z.object({
@@ -216,17 +218,12 @@ const calculateHarmonicsStep = createStep({
       organization: z.string(),
     }),
     astrologicalData: z.any(),
-    harmonicData: z.object({
-      harmonics: z.record(z.any()),
-      dominant_frequencies: z.array(z.any()),
-      overall_energy_pattern: z.string(),
-      processing_time: z.number(),
-    }),
+    harmonicData: z.any(),
   }),
   execute: async ({ inputData, runtimeContext }) => {
     const { employeeId, personalInfo, astrologicalData } = inputData;
     console.log(
-      `[Workflow: calculate-harmonics] - Starting for employee ${employeeId} ${astrologicalData}`,
+      `[Workflow: calculate-harmonics] - Starting for employee ${employeeId}`,
     );
 
     // Update processing status
@@ -243,31 +240,204 @@ const calculateHarmonicsStep = createStep({
       runtimeContext,
     });
 
-    // Calculate harmonics
+    // Fetch employee to get birth date
+    const employeeResult = await databaseTool.execute({
+      context: {
+        operation: 'fetch_employee',
+        employeeId,
+      },
+      runtimeContext,
+    });
+
+    if (!employeeResult.success) {
+      throw new Error('Employee not found for harmonic calculation');
+    }
+
+    const employee = employeeResult.data;
+
+    // Extract planet positions from astrologicalData
+    // Format: [{planetName: "Sun", longitude: 285.5}, ...]
+    const natalPositions: Array<{ planetName: string; longitude: number }> = [];
+
+    // Extract planets from the planets object
+    if (astrologicalData.planets && typeof astrologicalData.planets === 'object') {
+      const excludedPlanets = ['Chiron', 'Part of Fortune', 'Lilith'];
+
+      for (const [planetName, planetData] of Object.entries(astrologicalData.planets)) {
+        if (!excludedPlanets.includes(planetName) && planetData && typeof planetData === 'object') {
+          natalPositions.push({
+            planetName,
+            longitude: (planetData as any).longitude,
+          });
+        }
+      }
+    }
+
+    // Extract ASC (Ascendant) and MC (Midheaven) from house cusps
+    if (astrologicalData.houses && Array.isArray(astrologicalData.houses)) {
+      const house1 = astrologicalData.houses.find((h: any) => h.number === 1);
+      const house10 = astrologicalData.houses.find((h: any) => h.number === 10);
+
+      if (house1 && house1.cusp) {
+        natalPositions.push({
+          planetName: 'ASC',
+          longitude: house1.cusp,
+        });
+      }
+
+      if (house10 && house10.cusp) {
+        natalPositions.push({
+          planetName: 'MC',
+          longitude: house10.cusp,
+        });
+      }
+    }
+
+    console.log(
+      `[Workflow: calculate-harmonics] - Extracted ${natalPositions.length} planet positions`,
+    );
+
+    // Validate we have enough data before proceeding
+    if (natalPositions.length === 0) {
+      throw new Error(
+        'No planet positions extracted from astrology data. The astrology API may have returned empty data.',
+      );
+    }
+
+    console.log(
+      `[Workflow: calculate-harmonics] - Calling harmonicCalculationTool with:`,
+      `- Natal positions: ${natalPositions.length} planets`,
+      `- Birth date: ${employee.birthData.birthDate}`,
+      `- Current role: ${personalInfo.role.toLowerCase()}`,
+      `- Max harmonic: 360`,
+    );
+
+    // Calculate harmonics with Z-score normalization
     const harmonicResult = await harmonicCalculationTool.execute({
       context: {
-        planetPositions: astrologicalData.planets,
-        calculateAllHarmonics: false, // Use key harmonics for performance
+        natalPositions,
+        birthDate: typeof employee.birthData.birthDate === 'string'
+          ? employee.birthData.birthDate
+          : employee.birthData.birthDate.toISOString(),
+        targetDate: new Date().toISOString(),
+        maxHarmonic: 360,
+        calculateAgeHarmonics: true,
+        currentRole: (personalInfo.role.toLowerCase() as 'owner' | 'leader' | 'manager' | 'operational') || 'operational',
       },
       runtimeContext,
     });
 
     if (!harmonicResult.success) {
       throw new Error(
-        `Harmonic calculation failed: ${(harmonicResult as any).error || 'Unknown error'}`,
+        `Harmonic calculation failed: ${harmonicResult.error || 'Unknown error'}`,
       );
     }
 
-    // Save astrological and harmonic data to database
+    console.log(
+      `[Workflow: calculate-harmonics] - Harmonics calculated successfully in ${harmonicResult.processingTime}ms`,
+    );
+
+    console.log(
+      `[Workflow: calculate-harmonics] - Starting database saves...`,
+      `Has baseHarmonics: ${!!harmonicResult.baseHarmonics}`,
+      `Has ageHarmonics: ${!!harmonicResult.ageHarmonics}`,
+      `Has roleBasedInsights: ${!!harmonicResult.roleBasedInsights}`,
+    );
+
+    // Save base harmonics to BaseHarmonics collection
+    const baseHarmonicsSaveResult = await databaseTool.execute({
+      context: {
+        operation: 'save_base_harmonics',
+        employeeId,
+        data: {
+          ...harmonicResult.baseHarmonics,
+          organization: personalInfo.organization,
+        },
+      },
+      runtimeContext,
+    });
+    console.log(
+      `[Workflow: calculate-harmonics] - Base harmonics saved to collection`,
+      `Success: ${baseHarmonicsSaveResult.success}`,
+      `Document ID: ${(baseHarmonicsSaveResult as any).documentId}`,
+    );
+
+    // Save age harmonics to AgeHarmonics collection
+    if (harmonicResult.ageHarmonics) {
+      await databaseTool.execute({
+        context: {
+          operation: 'save_age_harmonics',
+          employeeId,
+          data: {
+            ...harmonicResult.ageHarmonics,
+            organization: personalInfo.organization,
+          },
+        },
+        runtimeContext,
+      });
+      console.log(
+        `[Workflow: calculate-harmonics] - Age harmonics saved to collection`,
+      );
+    }
+
+    // Save role insights for each role to RoleInsights collection
+    const roles = ['owner', 'leader', 'manager', 'operational'];
+    for (const role of roles) {
+      const baseInsights = harmonicResult.roleBasedInsights?.base[role] || [];
+      const ageInsights =
+        harmonicResult.roleBasedInsights?.age?.[role] || [];
+
+      await databaseTool.execute({
+        context: {
+          operation: 'save_role_insights',
+          employeeId,
+          data: {
+            role,
+            baseInsights,
+            ageInsights,
+            promotionReadiness: harmonicResult.promotionReadiness,
+            organization: personalInfo.organization,
+          },
+        },
+        runtimeContext,
+      });
+    }
+    console.log(
+      `[Workflow: calculate-harmonics] - Role insights saved for all roles`,
+    );
+
+    // Update employee with lightweight harmonic reference
+    const topEnergyCodes =
+      harmonicResult.baseHarmonics?.topHarmonicsByCluster.coreTrait
+        .slice(0, 3)
+        .map((h) => h.energyCode) || [];
+
+    await databaseTool.execute({
+      context: {
+        operation: 'update_employee_harmonic_reference',
+        employeeId,
+        data: {
+          hasAgeHarmonics: !!harmonicResult.ageHarmonics,
+          quickInsights: {
+            topEnergyCodes,
+            dominantCluster: 'coreTrait',
+            currentRole: personalInfo.role,
+          },
+        },
+      },
+      runtimeContext,
+    });
+    console.log(
+      `[Workflow: calculate-harmonics] - Employee harmonic reference updated`,
+    );
+
+    // Also save astrologicalData to employee for backward compatibility
     await databaseTool.execute({
       context: {
         operation: 'save_astro_data',
         employeeId,
         data: {
           astrologicalData,
-          harmonicData: harmonicResult,
-          dominantFrequencies: harmonicResult.dominant_frequencies,
-          energyPattern: harmonicResult.overall_energy_pattern,
         },
       },
       runtimeContext,
@@ -282,9 +452,9 @@ const calculateHarmonicsStep = createStep({
   },
 });
 
-// Step 4: Generate all reports in parallel
-const generateReportsStep = createStep({
-  id: 'generate-reports',
+// Step 4: Complete processing and notify
+const completeProcessingStep = createStep({
+  id: 'complete-processing',
   inputSchema: z.object({
     employeeId: z.string(),
     personalInfo: z.object({
@@ -295,246 +465,17 @@ const generateReportsStep = createStep({
       organization: z.string(),
     }),
     astrologicalData: z.any(),
-    harmonicData: z.object({
-      harmonics: z.record(z.any()),
-      dominant_frequencies: z.array(z.any()),
-      overall_energy_pattern: z.string(),
-      processing_time: z.number(),
-    }),
-  }),
-  outputSchema: z.object({
-    employeeId: z.string(),
-    reports: z.array(
-      z.object({
-        reportType: z.string(),
-        viewerRole: z.string(),
-        content: z.string(),
-        metadata: z.any(),
-      }),
-    ),
-    processingStats: z.object({
-      totalReports: z.number(),
-      successfulReports: z.number(),
-      failedReports: z.number(),
-      totalProcessingTime: z.number(),
-    }),
-  }),
-  execute: async ({ inputData, mastra, runtimeContext }) => {
-    const { employeeId, personalInfo, astrologicalData, harmonicData } =
-      inputData;
-    console.log(
-      `[Workflow: generate-reports] - Starting for employee ${employeeId}`,
-    );
-
-    // Update processing status
-    await databaseTool.execute({
-      context: {
-        operation: 'update_processing_status',
-        employeeId,
-        data: {
-          status: 'processing',
-          stage: 'report_generation',
-          progress: 60,
-        },
-      },
-      runtimeContext,
-    });
-
-    const reportTypes = [
-      'personality',
-      'role',
-      'department',
-      'industry',
-      'team',
-      'training',
-    ];
-    const viewerRoles = ['owner', 'leader', 'manager'];
-    const reports: Array<{
-      reportType: string;
-      viewerRole: string;
-      content: string;
-      metadata: any;
-    }> = [];
-    const startTime = Date.now();
-    let successfulReports = 0;
-    let failedReports = 0;
-
-    // Generate all reports
-    for (const reportType of reportTypes) {
-      for (const viewerRole of viewerRoles) {
-        try {
-          // Select appropriate agent for report type
-          const agentNameMap: Record<string, string> = {
-            personality: 'personalityAgent',
-            role: 'roleCompatibilityAgent',
-            department: 'departmentCompatibilityAgent',
-            industry: 'industryCompatibilityAgent',
-            team: 'teamIntegrationAgent',
-            training: 'trainingDevelopmentAgent',
-          };
-
-          const agentName = agentNameMap[reportType];
-          const agent = mastra.getAgent(agentName);
-
-          if (!agent) {
-            console.warn(`Agent ${agentName} not found, skipping report`);
-            failedReports++;
-            continue;
-          }
-
-          // Generate report content with AI agent
-          const reportPrompt = generateReportPrompt(
-            reportType,
-            viewerRole,
-            personalInfo,
-            harmonicData,
-          );
-
-          const agentResponse = await agent.generate(reportPrompt, {
-            // structuredOutput: {
-            //   schema: z.object({
-            //     executiveSummary: z.string().optional(),
-            //     detailedAnalysis: z.string().optional(),
-            //     strengths: z.array(z.string()).optional(),
-            //     developmentAreas: z.array(z.string()).optional(),
-            //     compatibilityScores: z.record(z.number()).optional(),
-            //     recommendations: z.array(z.string()).optional(),
-            //     insights: z.string().optional(),
-            //     actionItems: z.array(z.string()).optional(),
-            //   }),
-            // },
-            maxSteps: 3,
-          });
-
-          console.log('agentResponse', convertToJSON(agentResponse.text));
-          // Format the report using the formatting tool
-          // const formattedReport = await reportFormattingTool.execute({
-          //   context: {
-          //     reportType: reportType as
-          //       | 'personality'
-          //       | 'role'
-          //       | 'department'
-          //       | 'industry'
-          //       | 'team'
-          //       | 'training',
-          //     viewerRole: viewerRole as 'owner' | 'leader' | 'manager',
-          //     employeeData: personalInfo,
-          //     aiGeneratedContent: agentResponse.object,
-          //     metadata: {
-          //       confidenceLevel: 'HIGH',
-          //       energyCodeBase: harmonicData.overall_energy_pattern,
-          //       generationTime: Date.now() - startTime,
-          //     },
-          //   },
-          //   runtimeContext,
-          // });
-
-          // if (formattedReport.success) {
-          //   // Save report to database
-          //   await databaseTool.execute({
-          //     context: {
-          //       operation: 'save_report',
-          //       employeeId,
-          //       reportType: reportType as
-          //         | 'personality'
-          //         | 'role'
-          //         | 'department'
-          //         | 'industry'
-          //         | 'team'
-          //         | 'training',
-          //       viewerRole: viewerRole as 'owner' | 'leader' | 'manager',
-          //       data: {
-          //         content: formattedReport.formattedReport,
-          //         metadata: {
-          //           wordCount: formattedReport.wordCount,
-          //           estimatedReadTime: formattedReport.estimatedReadTime,
-          //           confidenceLevel: 'HIGH',
-          //           energyCodeBase: harmonicData.overall_energy_pattern,
-          //         },
-          //         confidenceLevel: 'HIGH',
-          //         energyCodeBase: harmonicData.overall_energy_pattern,
-          //         organization: personalInfo.organization,
-          //       },
-          //     },
-          //     runtimeContext,
-          //   });
-
-          //   reports.push({
-          //     reportType: reportType as
-          //       | 'personality'
-          //       | 'role'
-          //       | 'department'
-          //       | 'industry'
-          //       | 'team'
-          //       | 'training',
-          //     viewerRole: viewerRole as 'owner' | 'leader' | 'manager',
-          //     content: formattedReport.formattedReport,
-          //     metadata: {
-          //       wordCount: formattedReport.wordCount,
-          //       estimatedReadTime: formattedReport.estimatedReadTime,
-          //     },
-          //   });
-
-          //   successfulReports++;
-          // } else {
-          failedReports++;
-          // }
-        } catch (error) {
-          console.error(
-            `Failed to generate ${reportType} report for ${viewerRole}:`,
-            error.message,
-          );
-          failedReports++;
-        }
-      }
-    }
-
-    return {
-      employeeId,
-      reports,
-      processingStats: {
-        totalReports: reportTypes.length * viewerRoles.length,
-        successfulReports,
-        failedReports,
-        totalProcessingTime: Date.now() - startTime,
-      },
-    };
-  },
-});
-
-// Step 5: Complete processing and notify
-const completeProcessingStep = createStep({
-  id: 'complete-processing',
-  inputSchema: z.object({
-    employeeId: z.string(),
-    reports: z.array(
-      z.object({
-        reportType: z.string(),
-        viewerRole: z.string(),
-        content: z.string(),
-        metadata: z.any(),
-      }),
-    ),
-    processingStats: z.object({
-      totalReports: z.number(),
-      successfulReports: z.number(),
-      failedReports: z.number(),
-      totalProcessingTime: z.number(),
-    }),
+    harmonicData: z.any(),
   }),
   outputSchema: z.object({
     employeeId: z.string(),
     status: z.string(),
-    summary: z.object({
-      totalReports: z.number(),
-      successfulReports: z.number(),
-      completionTime: z.string(),
-    }),
+    completionTime: z.string(),
   }),
   execute: async ({ inputData, runtimeContext }) => {
-    const { employeeId, reports, processingStats } = inputData;
+    const { employeeId } = inputData;
     console.log(
-      `[Workflow: complete-processing] - Starting for employee ${employeeId}`,
+      `[Workflow: complete-processing] - Completing onboarding for employee ${employeeId}`,
     );
 
     // Update final processing status
@@ -544,11 +485,8 @@ const completeProcessingStep = createStep({
         employeeId,
         data: {
           status: 'completed',
-          stage: 'completed',
+          stage: 'harmonics_calculated',
           progress: 100,
-          completedReports: reports.map(
-            (r) => `${r.reportType}-${r.viewerRole}`,
-          ),
         },
       },
       runtimeContext,
@@ -557,11 +495,7 @@ const completeProcessingStep = createStep({
     return {
       employeeId,
       status: 'completed',
-      summary: {
-        totalReports: processingStats.totalReports,
-        successfulReports: processingStats.successfulReports,
-        completionTime: new Date().toISOString(),
-      },
+      completionTime: new Date().toISOString(),
     };
   },
 });
@@ -575,112 +509,11 @@ export const employeeOnboardingWorkflow = createWorkflow({
   outputSchema: z.object({
     employeeId: z.string(),
     status: z.string(),
-    summary: z.object({
-      totalReports: z.number(),
-      successfulReports: z.number(),
-      completionTime: z.string(),
-    }),
+    completionTime: z.string(),
   }),
 })
   .then(validateBirthDataStep)
   .then(generateAstrologyStep)
   .then(calculateHarmonicsStep)
-  .then(generateReportsStep)
   .then(completeProcessingStep)
   .commit();
-
-function convertToJSON(inputString) {
-  try {
-    // Step 1: Remove unnecessary concatenation or escaped newlines if present
-    const cleaned = inputString
-      .replace(/\\n/g, '\n') // Convert escaped \n back to real newlines
-      .replace(/\\'/g, "'") // Convert escaped single quotes
-      .replace(/\\"/g, '"'); // Convert escaped double quotes
-
-    // Step 2: Parse into actual JSON object
-    const jsonObject = JSON.parse(cleaned);
-
-    return jsonObject;
-  } catch (error) {
-    console.error('Invalid JSON string:', error.message);
-    return null;
-  }
-}
-
-// Helper function to generate appropriate prompts for each report type
-function generateReportPrompt(
-  reportType: string,
-  viewerRole: string,
-  personalInfo: any,
-  harmonicData: any,
-): string {
-  const baseContext = `
-Employee Information:
-- Name: ${personalInfo.name}
-- Role: ${personalInfo.role}
-- Department: ${personalInfo.department}
-- Organization: ${personalInfo.organization}
-
-Energy Pattern Analysis (translate to business psychology):
-- Primary Pattern: ${harmonicData.overall_energy_pattern}
-- Dominant Frequencies: ${harmonicData.dominant_frequencies.map((f) => f.harmonic).join(', ')}
-- Energy Distribution: ${JSON.stringify(harmonicData.dominant_frequencies)}
-
-Report Requirements:
-- Report Type: ${reportType} analysis
-- Viewer Role: ${viewerRole}
-- Focus: Professional ${reportType} assessment for ${viewerRole} decision-making
-`;
-
-  const roleSpecificInstructions = {
-    owner:
-      'Provide strategic business impact, ROI analysis, succession planning insights, and long-term value assessment.',
-    leader:
-      'Focus on department optimization, team performance, cross-functional coordination, and leadership development.',
-    manager:
-      'Emphasize daily management, task assignment, immediate performance, and practical action items.',
-  };
-
-  const reportSpecificInstructions = {
-    personality:
-      'Analyze core personality traits, work style preferences, communication patterns, and behavioral indicators.',
-    role: 'Evaluate job fit, performance prediction, career development potential, and role optimization recommendations.',
-    department:
-      'Assess department culture fit, team integration, workflow compatibility, and collaborative potential.',
-    industry:
-      'Analyze industry alignment, market dynamics fit, competitive advantages, and long-term industry success potential.',
-    team: 'Focus on team dynamics, collaboration style, leadership contribution, and group performance optimization.',
-    training:
-      'Provide personalized learning recommendations, skill development priorities, and growth planning.',
-  };
-
-  return `${baseContext}
-
-${roleSpecificInstructions[viewerRole]}
-
-${reportSpecificInstructions[reportType]}
-
-Generate a comprehensive analysis with:
-1. Executive summary (100-150 words)
-2. Detailed analysis with specific examples
-3. 3-5 key strengths with business applications
-4. 2-3 development areas with improvement strategies
-5. Compatibility scores (0-100) for relevant categories
-6. Specific recommendations for the ${viewerRole}
-7. Actionable insights and next steps
-
-schema: z.object({
-    executiveSummary: z.string(),
-   detailedAnalysis: z.string(),
-   strengths: z.array(z.string()),
-   developmentAreas: z.array(z.string()),
-   compatibilityScores: z.record(z.number()),
-   recommendations: z.array(z.string()),
-   insights: z.string(),
-   actionItems: z.array(z.string()),
- }),
-
- make sure response is valid json no other text then JSON do not add => \n' + it should be stringifyed JSON
-
-Remember: Never mention astrology, harmonic codes, or metaphysical concepts. Frame everything as data-driven personality analysis and behavioral pattern recognition.`;
-}

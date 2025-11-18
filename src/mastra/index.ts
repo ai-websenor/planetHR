@@ -10,6 +10,7 @@ import { trainingDevelopmentAgent } from "./agents/training-development-agent";
 
 // Import workflows
 import { employeeOnboardingWorkflow } from "./workflows/employee-onboarding-workflow";
+import { reportGenerationWorkflow } from "./workflows/report-generation-workflow";
 
 // Import tools
 import { astrologyApiTool } from "./tools/astrology-api-tool";
@@ -28,5 +29,6 @@ export const mastra = new Mastra({
   },
   workflows: {
     employeeOnboardingWorkflow,
+    reportGenerationWorkflow,
   },
 });

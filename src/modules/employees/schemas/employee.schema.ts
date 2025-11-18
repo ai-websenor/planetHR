@@ -70,15 +70,19 @@ export class Employee extends Document {
       houses: any[];
       aspects: any[];
     };
-    harmonicData: {
-      harmonics: Record<string, any>;
-      dominant_frequencies: any[];
-      overall_energy_pattern: string;
+    harmonicReferences: {
+      hasBaseHarmonics: boolean;
+      hasAgeHarmonics: boolean;
+      lastCalculated: Date;
+      nextUpdate: Date;
+    };
+    quickInsights: {
+      topEnergyCodes: string[];
+      dominantCluster: string;
+      currentRole: string;
     };
     traits: string[];
     harmonicFrequency: string[];
-    lastCalculated: Date;
-    nextUpdate: Date;
   };
 
   @Prop({ type: Object })
@@ -118,4 +122,4 @@ export const EmployeeSchema = SchemaFactory.createForClass(Employee);
 EmployeeSchema.index({ organization: 1, isActive: 1 });
 EmployeeSchema.index({ 'addedBy.userId': 1 });
 EmployeeSchema.index({ 'processingStatus.status': 1 });
-EmployeeSchema.index({ 'energyCode.nextUpdate': 1 });
+EmployeeSchema.index({ 'energyCode.harmonicReferences.nextUpdate': 1 });

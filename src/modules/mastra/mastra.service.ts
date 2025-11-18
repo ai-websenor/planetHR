@@ -4,6 +4,10 @@ import { Model } from 'mongoose';
 import { mastra } from '../../mastra';
 import { Employee } from '../employees/schemas/employee.schema';
 import { Report } from '../reports/schemas/report.schema';
+import { BaseHarmonics } from '../harmonics/schemas/base-harmonics.schema';
+import { AgeHarmonics } from '../harmonics/schemas/age-harmonics.schema';
+import { RoleInsights } from '../harmonics/schemas/role-insights.schema';
+import { ApiLogsService } from '../api-logs/api-logs.service';
 
 @Injectable()
 export class MastraService implements OnModuleInit {
@@ -12,6 +16,13 @@ export class MastraService implements OnModuleInit {
   constructor(
     @InjectModel(Employee.name) private employeeModel: Model<Employee>,
     @InjectModel(Report.name) private reportModel: Model<Report>,
+    @InjectModel(BaseHarmonics.name)
+    private baseHarmonicsModel: Model<BaseHarmonics>,
+    @InjectModel(AgeHarmonics.name)
+    private ageHarmonicsModel: Model<AgeHarmonics>,
+    @InjectModel(RoleInsights.name)
+    private roleInsightsModel: Model<RoleInsights>,
+    private apiLogsService: ApiLogsService,
   ) {}
 
   async onModuleInit() {
@@ -22,7 +33,11 @@ export class MastraService implements OnModuleInit {
       this.context = new Map();
       this.context.set('employeeModel', this.employeeModel);
       this.context.set('reportModel', this.reportModel);
-      
+      this.context.set('baseHarmonicsModel', this.baseHarmonicsModel);
+      this.context.set('ageHarmonicsModel', this.ageHarmonicsModel);
+      this.context.set('roleInsightsModel', this.roleInsightsModel);
+      this.context.set('apiLogsService', this.apiLogsService);
+
       // Note: In a real implementation, we would pass this context
       // through the workflow execution. For now, this demonstrates
       // how the integration would work.

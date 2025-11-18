@@ -53,6 +53,9 @@ importers:
       ai:
         specifier: ^5.0.76
         version: 5.0.76(zod@3.25.76)
+      astrologyapi:
+        specifier: ^1.0.1
+        version: 1.0.1
       axios:
         specifier: ^1.13.1
         version: 1.13.1
@@ -2539,6 +2542,9 @@ packages:
 
   asap@2.0.6:
     resolution: {integrity: sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==}
+
+  astrologyapi@1.0.1:
+    resolution: {integrity: sha512-8eq7gNGgolZOPSUjOAUpvldATE9LTc7Tf85lvU/9klb9PJMqOutJUDoSWPJZu8s9tITr+Ek5F1eH5Jh+PbIfpA==}
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
@@ -8385,6 +8391,12 @@ snapshots:
   array-timsort@1.0.3: {}
 
   asap@2.0.6: {}
+
+  astrologyapi@1.0.1:
+    dependencies:
+      axios: 1.13.1
+    transitivePeerDependencies:
+      - debug
 
   asynckit@0.4.0: {}
 

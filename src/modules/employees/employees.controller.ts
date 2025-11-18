@@ -7,15 +7,24 @@ import {
   UseGuards,
   Logger,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { EmployeesService } from './employees.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { mastra } from '../../mastra';
 import { RuntimeContext } from '@mastra/core/runtime-context';
 import { MastraService } from '../mastra/mastra.service';
+import { User } from '../../common/decorators/user.decorator';
+import type { JwtPayload } from '../auth/services/auth.service';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
 @ApiTags('Employees')
 @ApiBearerAuth('JWT-auth')
+@UseGuards(JwtAuthGuard)
 @Controller('employees')
 export class EmployeesController {
   private readonly logger = new Logger(EmployeesController.name);
@@ -31,22 +40,24 @@ export class EmployeesController {
     status: 201,
     description: 'Employee created and analysis queued',
   })
-  async createEmployee(@Body() createEmployeeDto: CreateEmployeeDto) {
+  async createEmployee(
+    @Body() createEmployeeDto: CreateEmployeeDto,
+    @User() user: JwtPayload,
+  ) {
     this.logger.log(
       `[POST /employees] - Received request to create employee: ${JSON.stringify(
         createEmployeeDto,
       )}`,
     );
-    // Mock user data for now - this would come from JWT in real implementation
-    const user = {
-      sub: 'mock-user-id',
-      email: 'test@example.com',
-      role: 'owner',
-      organizationId: 'mock-org-id',
-    };
+    this.logger.log(
+      `[POST /employees] - Authenticated user: ${user.email} (${user.role}) from organization: ${user.organizationId}`,
+    );
 
     // Create employee record
-    const employee = await this.employeesService.create(createEmployeeDto, user);
+    const employee = await this.employeesService.create(
+      createEmployeeDto,
+      user,
+    );
 
     // Run onboarding workflow directly
     this.logger.log(
@@ -59,7 +70,9 @@ export class EmployeesController {
     } else {
       // Do not await this, let it run in the background
       const contextMap = this.mastraService.getContext();
-      const runtimeContext = new RuntimeContext(Array.from(contextMap.entries()));
+      const runtimeContext = new RuntimeContext(
+        Array.from(contextMap.entries()),
+      );
       workflow.createRunAsync().then((run) => {
         run
           .start({
@@ -68,7 +81,7 @@ export class EmployeesController {
           })
           .then((finalResult) => {
             this.logger.log(
-              `[POST /employees] - Workflow completed for employee: ${employee.id} with result: ${JSON.stringify(finalResult)}`,
+              `[POST /employees] - Workflow completed for employee: ${employee.id}`,
             );
           })
           .catch((error) => {
@@ -125,14 +138,13 @@ export class EmployeesController {
 
   @Get(':id/reports')
   @ApiOperation({ summary: 'Get employee reports by role' })
-  async getEmployeeReports(@Param('id') id: string) {
+  async getEmployeeReports(@Param('id') id: string, @User() user: JwtPayload) {
     this.logger.log(
       `[GET /employees/${id}/reports] - Received request for employee reports`,
     );
-    // Mock user role for now
-    const userRole = 'owner';
+    this.logger.log(`[GET /employees/${id}/reports] - User role: ${user.role}`);
 
-    const reports = await this.employeesService.getReportsByRole(id, userRole);
+    const reports = await this.employeesService.getReportsByRole(id, user.role);
     this.logger.log(
       `[GET /employees/${id}/reports] - Returning employee reports`,
     );

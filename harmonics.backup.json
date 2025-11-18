@@ -1,0 +1,2162 @@
+[
+  {
+    "Energy Code": "E1",
+    "Energy Code Name": "Foundation Energy",
+    "Core Expression / Trait": "Core Identity & Life Direction",
+    "Behavior Insight / Application": "Sense of self, identity clarity, directional stability"
+  },
+  {
+    "Energy Code": "E2",
+    "Energy Code Name": "Balance & Duality",
+    "Core Expression / Trait": "Contrast navigation, harmony-seeking",
+    "Behavior Insight / Application": "Sees both sides, struggles with inner conflict or thrives in diplomacy"
+  },
+  {
+    "Energy Code": "E3",
+    "Energy Code Name": "Focused Flow",
+    "Core Expression / Trait": "Discipline, rhythm, execution power",
+    "Behavior Insight / Application": "Natural consistency, task mastery, operational fit"
+  },
+  {
+    "Energy Code": "E4",
+    "Energy Code Name": "Structural Intelligence",
+    "Core Expression / Trait": "Order, systems, process-building",
+    "Behavior Insight / Application": "Process-focused, logic-first, ideal for planning/ops"
+  },
+  {
+    "Energy Code": "E5",
+    "Energy Code Name": "Creative Spark",
+    "Core Expression / Trait": "Idea generation, expressive originality",
+    "Behavior Insight / Application": "Magnetic thinkers, artists, disruptors"
+  },
+  {
+    "Energy Code": "E6",
+    "Energy Code Name": "Logical Mind",
+    "Core Expression / Trait": "Precision, pattern recognition, judgment",
+    "Behavior Insight / Application": "High cognitive processing, analytics roles"
+  },
+  {
+    "Energy Code": "E7",
+    "Energy Code Name": "Inner Seeker",
+    "Core Expression / Trait": "Reflective depth, spiritual quest, idealism",
+    "Behavior Insight / Application": "Loners, introspective, vision-led"
+  },
+  {
+    "Energy Code": "E8",
+    "Energy Code Name": "Executive Instinct",
+    "Core Expression / Trait": "Power, leadership readiness, decisiveness",
+    "Behavior Insight / Application": "Dominant leadership drive, authority-seeking"
+  },
+  {
+    "Energy Code": "E9",
+    "Energy Code Name": "Emotional Surge",
+    "Core Expression / Trait": "Intensity, passion, mood volatility",
+    "Behavior Insight / Application": "Deep feelers, may trigger/react easily"
+  },
+  {
+    "Energy Code": "E10",
+    "Energy Code Name": "Inventive Vision",
+    "Core Expression / Trait": "Visual creativity, future-building",
+    "Behavior Insight / Application": "Designers, product visionaries, aesthetic strategists"
+  },
+  {
+    "Energy Code": "E11",
+    "Energy Code Name": "Soul Expression",
+    "Core Expression / Trait": "Charisma, magnetic voice, emotional fluency",
+    "Behavior Insight / Application": "Public speakers, actors, therapists"
+  },
+  {
+    "Energy Code": "E12",
+    "Energy Code Name": "Concept Architect",
+    "Core Expression / Trait": "Ideation systems, philosophical builders",
+    "Behavior Insight / Application": "Thinkers, model-makers, authors, strategists"
+  },
+  {
+    "Energy Code": "E13",
+    "Energy Code Name": "Visionary Drive",
+    "Core Expression / Trait": "Mission clarity, growth hunger, ambition",
+    "Behavior Insight / Application": "Vision-led entrepreneurs, reformers"
+  },
+  {
+    "Energy Code": "E14",
+    "Energy Code Name": "Multi-Reality Perception",
+    "Core Expression / Trait": "Multiple perspective seeing, confusion cycles",
+    "Behavior Insight / Application": "Can integrate or get lost — spiritual/psych sensitivities"
+  },
+  {
+    "Energy Code": "E15",
+    "Energy Code Name": "Idea Expansion Field",
+    "Core Expression / Trait": "Scaling power, big-picture builder",
+    "Behavior Insight / Application": "Vision amplifiers, ecosystem creators"
+  },
+  {
+    "Energy Code": "E16",
+    "Energy Code Name": "Justice Compass",
+    "Core Expression / Trait": "Ethics, fairness, truth-seeking",
+    "Behavior Insight / Application": "Whistleblowers, reformists, internal code-driven people"
+  },
+  {
+    "Energy Code": "E17",
+    "Energy Code Name": "Emotional Overcurrent",
+    "Core Expression / Trait": "Empathic overload, mood storms, vulnerability",
+    "Behavior Insight / Application": "Healing-seekers, crisis responders, burnout-prone"
+  },
+  {
+    "Energy Code": "E18",
+    "Energy Code Name": "Precision Performer",
+    "Core Expression / Trait": "Accuracy, perfectionism, technical finesse",
+    "Behavior Insight / Application": "Ideal for quality roles, engineering, or surgery"
+  },
+  {
+    "Energy Code": "E19",
+    "Energy Code Name": "Mental Rigidity Point",
+    "Core Expression / Trait": "Over-attachment to thought/form",
+    "Behavior Insight / Application": "Can resist change, deeply conviction-led"
+  },
+  {
+    "Energy Code": "E20",
+    "Energy Code Name": "Techno-Flow Stream",
+    "Core Expression / Trait": "Systemic innovation, automation, backend logic",
+    "Behavior Insight / Application": "Coders, architects, process engineers"
+  },
+  {
+    "Energy Code": "E21",
+    "Energy Code Name": "Wound Gateway (Shame Origin)",
+    "Core Expression / Trait": "Hidden pain, vulnerability imprint",
+    "Behavior Insight / Application": "Deep-seated insecurity or quiet resilience"
+  },
+  {
+    "Energy Code": "E22",
+    "Energy Code Name": "Peace Disturber",
+    "Core Expression / Trait": "Internal chaos, destabilizing reactions",
+    "Behavior Insight / Application": "Emotional fragility, fear-based conflict"
+  },
+  {
+    "Energy Code": "E23",
+    "Energy Code Name": "Destructive Transformer",
+    "Core Expression / Trait": "Self-sabotage or intense rebirth catalyst",
+    "Behavior Insight / Application": "Dangerous if unprocessed; powerful if mastered"
+  },
+  {
+    "Energy Code": "E24",
+    "Energy Code Name": "Spiritual Seeker",
+    "Core Expression / Trait": "Divine alignment, higher consciousness",
+    "Behavior Insight / Application": "Yogis, healers, channelers"
+  },
+  {
+    "Energy Code": "E25",
+    "Energy Code Name": "Power Pattern Loop",
+    "Core Expression / Trait": "Cycles of dominance–submission",
+    "Behavior Insight / Application": "Can manipulate or be manipulated"
+  },
+  {
+    "Energy Code": "E26",
+    "Energy Code Name": "Execution Engine",
+    "Core Expression / Trait": "Task power, productivity rhythm",
+    "Behavior Insight / Application": "Ideal for managers, builders, delivery heads"
+  },
+  {
+    "Energy Code": "E27",
+    "Energy Code Name": "Personal Conflict Trigger",
+    "Core Expression / Trait": "Self-judgment, indecisiveness, mood spikes",
+    "Behavior Insight / Application": "Struggles with self-belief or emotion regulation"
+  },
+  {
+    "Energy Code": "E28",
+    "Energy Code Name": "Legacy Focus Stream",
+    "Core Expression / Trait": "Intergenerational memory, purpose depth",
+    "Behavior Insight / Application": "Family-centered, long-view visionaries"
+  },
+  {
+    "Energy Code": "E29",
+    "Energy Code Name": "Confusion Field",
+    "Core Expression / Trait": "Fog, forgetfulness, trauma veil",
+    "Behavior Insight / Application": "Prone to escapism or needs clarity rituals"
+  },
+  {
+    "Energy Code": "E30",
+    "Energy Code Name": "Transformation Channel",
+    "Core Expression / Trait": "Rebirth, karmic healing, ego death",
+    "Behavior Insight / Application": "Crisis as catalyst for reinvention"
+  },
+  {
+    "Energy Code": "E31",
+    "Energy Code Name": "Community Wave",
+    "Core Expression / Trait": "Social influence, group belonging need",
+    "Behavior Insight / Application": "Connectors, mediators, social entrepreneurs"
+  },
+  {
+    "Energy Code": "E32",
+    "Energy Code Name": "Integrity Radar",
+    "Core Expression / Trait": "Truth filter, moral response system",
+    "Behavior Insight / Application": "Ethical filters, may overjudge or self-censor"
+  },
+  {
+    "Energy Code": "E33",
+    "Energy Code Name": "Faith vs Fear Gate",
+    "Core Expression / Trait": "Spiritual resilience or panic gateway",
+    "Behavior Insight / Application": "Belief-driven growth or fear-driven paralysis"
+  },
+  {
+    "Energy Code": "E34",
+    "Energy Code Name": "Isolation Energy",
+    "Core Expression / Trait": "Withdrawal, social detachment, soul silence",
+    "Behavior Insight / Application": "Need private space, may seem cold to others"
+  },
+  {
+    "Energy Code": "E35",
+    "Energy Code Name": "Inner Child Core",
+    "Core Expression / Trait": "Play, innocence, emotional hunger",
+    "Behavior Insight / Application": "Creativity + pain mix, early wound residues"
+  },
+  {
+    "Energy Code": "E36",
+    "Energy Code Name": "Rebirth Portal",
+    "Core Expression / Trait": "Final surrender, breakthrough harmonic",
+    "Behavior Insight / Application": "Soul evolution, trauma-to-purpose activators"
+  },
+  {
+    "Energy Code": "E37",
+    "Energy Code Name": "Forceful Drive",
+    "Core Expression / Trait": "Aggression, command, dominance instinct",
+    "Behavior Insight / Application": "High-impact leaders or potential bullies"
+  },
+  {
+    "Energy Code": "E38",
+    "Energy Code Name": "Detail Distortion",
+    "Core Expression / Trait": "Lost in over-analysis or obsession",
+    "Behavior Insight / Application": "Needs pattern-break awareness"
+  },
+  {
+    "Energy Code": "E39",
+    "Energy Code Name": "Possession Fear Code",
+    "Core Expression / Trait": "Abandonment terror, extreme control tendency",
+    "Behavior Insight / Application": "Trust work needed, trauma-linked"
+  },
+  {
+    "Energy Code": "E40",
+    "Energy Code Name": "Intellectual Channel",
+    "Core Expression / Trait": "Data processing, system abstraction",
+    "Behavior Insight / Application": "Cognitive strategists, researchers"
+  },
+  {
+    "Energy Code": "E41",
+    "Energy Code Name": "Mirror Point",
+    "Core Expression / Trait": "Projects fear/strength onto others",
+    "Behavior Insight / Application": "Triggers partnerships and karmic mirrors"
+  },
+  {
+    "Energy Code": "E42",
+    "Energy Code Name": "Relationship Tester",
+    "Core Expression / Trait": "Love disruption, test-of-trust marker",
+    "Behavior Insight / Application": "Repetitive issues in love unless healed"
+  },
+  {
+    "Energy Code": "E43",
+    "Energy Code Name": "Energy Leak Zone",
+    "Core Expression / Trait": "Vitality drain, non-stop output",
+    "Behavior Insight / Application": "Prone to exhaustion or over-giving"
+  },
+  {
+    "Energy Code": "E44",
+    "Energy Code Name": "Body-Mind Divide",
+    "Core Expression / Trait": "Psychosomatic stress, imbalance signal",
+    "Behavior Insight / Application": "Yoga/healing disciplines useful"
+  },
+  {
+    "Energy Code": "E45",
+    "Energy Code Name": "Emotional Amplifier",
+    "Core Expression / Trait": "Exaggeration, overexpression, reactive zone",
+    "Behavior Insight / Application": "Communication discipline required"
+  },
+  {
+    "Energy Code": "E46",
+    "Energy Code Name": "Channel Disruptor",
+    "Core Expression / Trait": "Blocked flow, nervous tension, anxiety",
+    "Behavior Insight / Application": "Breathwork, grounding helpful"
+  },
+  {
+    "Energy Code": "E47",
+    "Energy Code Name": "Hyper-Mind Spiral",
+    "Core Expression / Trait": "Racing thoughts, overthinking trap",
+    "Behavior Insight / Application": "Needs thought slowing practices"
+  },
+  {
+    "Energy Code": "E48",
+    "Energy Code Name": "Soul Retrieval Point",
+    "Core Expression / Trait": "Lost self-recovery, identity reclamation",
+    "Behavior Insight / Application": "Integration of inner split needed"
+  },
+  {
+    "Energy Code": "E49",
+    "Energy Code Name": "Feminine Wound Line",
+    "Core Expression / Trait": "Mother/feminine pain, rejection, healing",
+    "Behavior Insight / Application": "Applies regardless of gender"
+  },
+  {
+    "Energy Code": "E50",
+    "Energy Code Name": "Masculine Wound Line",
+    "Core Expression / Trait": "Father/masculine pain, rejection, pressure",
+    "Behavior Insight / Application": "Power, provision, or approval trauma layer"
+  },
+  {
+    "Energy Code": "E51",
+    "Energy Code Name": "Intuition Line",
+    "Core Expression / Trait": "Gut knowing, vision-guided sensing",
+    "Behavior Insight / Application": "Highly intuitive, needs faith in self"
+  },
+  {
+    "Energy Code": "E52",
+    "Energy Code Name": "Strategy Pulse",
+    "Core Expression / Trait": "Plan sequencing, risk evaluation",
+    "Behavior Insight / Application": "Product architects, managers, C-suite potential"
+  },
+  {
+    "Energy Code": "E53",
+    "Energy Code Name": "Freedom Surge",
+    "Core Expression / Trait": "Wanderer energy, commitment resistance",
+    "Behavior Insight / Application": "Seekers, rebels, spiritual nomads"
+  },
+  {
+    "Energy Code": "E54",
+    "Energy Code Name": "Karma Loop Detector",
+    "Core Expression / Trait": "Repeating patterns of hurt or behavior",
+    "Behavior Insight / Application": "Good for TIRM and conflict models"
+  },
+  {
+    "Energy Code": "E55",
+    "Energy Code Name": "Grounding Code",
+    "Core Expression / Trait": "Stabilization, routine, habit reformation",
+    "Behavior Insight / Application": "Great for daily planning and execution nudges"
+  },
+  {
+    "Energy Code": "E56",
+    "Energy Code Name": "Displacement Energy",
+    "Core Expression / Trait": "Out-of-place sensation, identity dislocation",
+    "Behavior Insight / Application": "Useful in Space Harmony / relocation model"
+  },
+  {
+    "Energy Code": "E57",
+    "Energy Code Name": "Trust Fragmenter",
+    "Core Expression / Trait": "Betrayal patterns, hard to trust self/others",
+    "Behavior Insight / Application": "Healing + slow relational rebuild needed"
+  },
+  {
+    "Energy Code": "E58",
+    "Energy Code Name": "Role Clarity Lens",
+    "Core Expression / Trait": "Understanding personal fit & place",
+    "Behavior Insight / Application": "Key to role mapping in PlanetsHR"
+  },
+  {
+    "Energy Code": "E59",
+    "Energy Code Name": "Expansion Strain",
+    "Core Expression / Trait": "Pressure during growth or scale",
+    "Behavior Insight / Application": "Good in founder/CEO tracking engine"
+  },
+  {
+    "Energy Code": "E60",
+    "Energy Code Name": "Destiny Surge",
+    "Core Expression / Trait": "Highest potential pushing through",
+    "Behavior Insight / Application": "Purpose alignment window opens here"
+  },
+  {
+    "Energy Code": "E61",
+    "Energy Code Name": "Pressure Point",
+    "Core Expression / Trait": "Feels urgency or time-bound stress",
+    "Behavior Insight / Application": "Thrives on deadlines or may crumble under pressure"
+  },
+  {
+    "Energy Code": "E62",
+    "Energy Code Name": "Safety Seeker",
+    "Core Expression / Trait": "Needs control, dislikes risk",
+    "Behavior Insight / Application": "Avoids change, prefers known environments"
+  },
+  {
+    "Energy Code": "E63",
+    "Energy Code Name": "Rhythm Breaker",
+    "Core Expression / Trait": "Disrupts patterns, seeks unpredictability",
+    "Behavior Insight / Application": "Creative chaos or instability in routines"
+  },
+  {
+    "Energy Code": "E64",
+    "Energy Code Name": "Quiet Power",
+    "Core Expression / Trait": "Influence without noise",
+    "Behavior Insight / Application": "Leads silently, persuasive without force"
+  },
+  {
+    "Energy Code": "E65",
+    "Energy Code Name": "Identity Shift",
+    "Core Expression / Trait": "Redefines self repeatedly",
+    "Behavior Insight / Application": "May reinvent often; useful in dynamic roles"
+  },
+  {
+    "Energy Code": "E66",
+    "Energy Code Name": "Spotlight Energy",
+    "Core Expression / Trait": "Needs to be seen or heard",
+    "Behavior Insight / Application": "Drives public-facing roles; also triggers insecurity"
+  },
+  {
+    "Energy Code": "E67",
+    "Energy Code Name": "Delay Loop",
+    "Core Expression / Trait": "Postpones action, slow to commit",
+    "Behavior Insight / Application": "Procrastination patterns or thoughtful pacing"
+  },
+  {
+    "Energy Code": "E68",
+    "Energy Code Name": "Fairness Filter",
+    "Core Expression / Trait": "Hyper-aware of justice and bias",
+    "Behavior Insight / Application": "Can challenge norms or struggle in unfair systems"
+  },
+  {
+    "Energy Code": "E69",
+    "Energy Code Name": "Comfort Craving",
+    "Core Expression / Trait": "Seeks emotional or physical ease",
+    "Behavior Insight / Application": "Avoids hard truths or growth discomfort"
+  },
+  {
+    "Energy Code": "E70",
+    "Energy Code Name": "Deep Listener",
+    "Core Expression / Trait": "Absorbs beneath the surface",
+    "Behavior Insight / Application": "Excellent in therapy, HR, or emotional mediation"
+  },
+  {
+    "Energy Code": "E71",
+    "Energy Code Name": "Speed Driver",
+    "Core Expression / Trait": "Acts quickly, sometimes impulsively",
+    "Behavior Insight / Application": "Great in crisis or startups; may overlook details"
+  },
+  {
+    "Energy Code": "E72",
+    "Energy Code Name": "Exit Energy",
+    "Core Expression / Trait": "Looks for way out during stress",
+    "Behavior Insight / Application": "Prone to quitting, withdrawal, or self-removal"
+  },
+  {
+    "Energy Code": "E73",
+    "Energy Code Name": "Forgiveness Block",
+    "Core Expression / Trait": "Struggles to release past hurts",
+    "Behavior Insight / Application": "May hold grudges; needs emotional closure tools"
+  },
+  {
+    "Energy Code": "E74",
+    "Energy Code Name": "Stability Builder",
+    "Core Expression / Trait": "Strong in creating safe foundations",
+    "Behavior Insight / Application": "Ideal for admin, finance, infrastructure roles"
+  },
+  {
+    "Energy Code": "E75",
+    "Energy Code Name": "Growth Pusher",
+    "Core Expression / Trait": "Feels restless if not expanding",
+    "Behavior Insight / Application": "Great in scale-up roles, can feel trapped in routine"
+  },
+  {
+    "Energy Code": "E76",
+    "Energy Code Name": "Doubt Loop",
+    "Core Expression / Trait": "Cycles through indecision or second-guessing",
+    "Behavior Insight / Application": "Needs external anchors; struggles with solo decisions"
+  },
+  {
+    "Energy Code": "E77",
+    "Energy Code Name": "Strong Boundaries",
+    "Core Expression / Trait": "Knows limits, maintains personal space",
+    "Behavior Insight / Application": "Great in leadership or trauma-sensitive roles"
+  },
+  {
+    "Energy Code": "E78",
+    "Energy Code Name": "Inner Fire",
+    "Core Expression / Trait": "Intense drive or passion",
+    "Behavior Insight / Application": "Can burn out or break through; coaching needed"
+  },
+  {
+    "Energy Code": "E79",
+    "Energy Code Name": "Pattern Holder",
+    "Core Expression / Trait": "Keeps habits and systems intact",
+    "Behavior Insight / Application": "Loyal, stable, but resists innovation"
+  },
+  {
+    "Energy Code": "E80",
+    "Energy Code Name": "Closure Seeker",
+    "Core Expression / Trait": "Needs to complete or conclude",
+    "Behavior Insight / Application": "Task-finisher, but may rush endings"
+  },
+  {
+    "Energy Code": "E81",
+    "Energy Code Name": "Blame Magnet",
+    "Core Expression / Trait": "Feels responsible even when not at fault",
+    "Behavior Insight / Application": "Can be easily guilt-tripped or manipulated"
+  },
+  {
+    "Energy Code": "E82",
+    "Energy Code Name": "Risk Runner",
+    "Core Expression / Trait": "Takes bold leaps without full prep",
+    "Behavior Insight / Application": "Innovator or reckless depending on environment"
+  },
+  {
+    "Energy Code": "E83",
+    "Energy Code Name": "Guarded Heart",
+    "Core Expression / Trait": "Protects emotions, slow to open up",
+    "Behavior Insight / Application": "Needs emotional safety first, can appear distant"
+  },
+  {
+    "Energy Code": "E84",
+    "Energy Code Name": "Detail Keeper",
+    "Core Expression / Trait": "Notices and remembers specifics",
+    "Behavior Insight / Application": "Ideal for editing, auditing, QA roles"
+  },
+  {
+    "Energy Code": "E85",
+    "Energy Code Name": "Conflict Avoider",
+    "Core Expression / Trait": "Dislikes confrontation",
+    "Behavior Insight / Application": "Keeps peace but may suppress own needs"
+  },
+  {
+    "Energy Code": "E86",
+    "Energy Code Name": "System Thinker",
+    "Core Expression / Trait": "Sees how parts connect",
+    "Behavior Insight / Application": "Strategic planner, ideal in ops or org design"
+  },
+  {
+    "Energy Code": "E87",
+    "Energy Code Name": "Meaning Maker",
+    "Core Expression / Trait": "Seeks purpose behind every action",
+    "Behavior Insight / Application": "May resist tasks that feel empty or mechanical"
+  },
+  {
+    "Energy Code": "E88",
+    "Energy Code Name": "Emotional Echo",
+    "Core Expression / Trait": "Holds on to past emotional imprints",
+    "Behavior Insight / Application": "Experiences delayed grief or joy, needs processing time"
+  },
+  {
+    "Energy Code": "E89",
+    "Energy Code Name": "Fast Learner",
+    "Core Expression / Trait": "Quickly adapts and absorbs new input",
+    "Behavior Insight / Application": "Agile in new environments; ideal for training"
+  },
+  {
+    "Energy Code": "E90",
+    "Energy Code Name": "Control Pulse",
+    "Core Expression / Trait": "Needs to steer outcomes",
+    "Behavior Insight / Application": "Can become overbearing or highly effective leader"
+  },
+  {
+    "Energy Code": "E91",
+    "Energy Code Name": "Curiosity Trigger",
+    "Core Expression / Trait": "Driven to explore, ask, understand",
+    "Behavior Insight / Application": "Ideal in R&D, journalism, and problem solving"
+  },
+  {
+    "Energy Code": "E92",
+    "Energy Code Name": "Role Bender",
+    "Core Expression / Trait": "Disrupts hierarchy or assigned identity",
+    "Behavior Insight / Application": "Works better in flat teams or flexible roles"
+  },
+  {
+    "Energy Code": "E93",
+    "Energy Code Name": "Silent Builder",
+    "Core Expression / Trait": "Creates quietly without seeking credit",
+    "Behavior Insight / Application": "Reliable, background contributor with high output"
+  },
+  {
+    "Energy Code": "E94",
+    "Energy Code Name": "Old Pattern Repeater",
+    "Core Expression / Trait": "Replays family or past loops unconsciously",
+    "Behavior Insight / Application": "Great for inner healing and lineage awareness"
+  },
+  {
+    "Energy Code": "E95",
+    "Energy Code Name": "Joy Carrier",
+    "Core Expression / Trait": "Brings lightness or optimism into rooms",
+    "Behavior Insight / Application": "Morale booster; should be protected from toxic settings"
+  },
+  {
+    "Energy Code": "E96",
+    "Energy Code Name": "Split Energy",
+    "Core Expression / Trait": "Torn between two needs or paths",
+    "Behavior Insight / Application": "Needs integration work to feel whole again"
+  },
+  {
+    "Energy Code": "E97",
+    "Energy Code Name": "External Validator",
+    "Core Expression / Trait": "Needs feedback or approval to act",
+    "Behavior Insight / Application": "Responds to reward; struggles with self-worth in silence"
+  },
+  {
+    "Energy Code": "E98",
+    "Energy Code Name": "Outcome Anchor",
+    "Core Expression / Trait": "Focuses deeply on end results",
+    "Behavior Insight / Application": "Gets things done but may miss the journey"
+  },
+  {
+    "Energy Code": "E99",
+    "Energy Code Name": "Unseen Force",
+    "Core Expression / Trait": "Strong behind-the-scenes influence",
+    "Behavior Insight / Application": "Moves systems quietly; ideal in strategic roles"
+  },
+  {
+    "Energy Code": "E100",
+    "Energy Code Name": "Energy Mirror",
+    "Core Expression / Trait": "Reflects energy of others unconsciously",
+    "Behavior Insight / Application": "Absorbs moods easily; must manage environments well"
+  },
+  {
+    "Energy Code": "E101",
+    "Energy Code Name": "Protective Instinct",
+    "Core Expression / Trait": "Defends loved ones or ideas strongly",
+    "Behavior Insight / Application": "Loyal and brave, may become controlling"
+  },
+  {
+    "Energy Code": "E102",
+    "Energy Code Name": "Voice Gate",
+    "Core Expression / Trait": "Struggles to speak up or over-shares",
+    "Behavior Insight / Application": "Needs communication coaching or clarity filters"
+  },
+  {
+    "Energy Code": "E103",
+    "Energy Code Name": "Energy Surge",
+    "Core Expression / Trait": "Sudden bursts of intensity or drive",
+    "Behavior Insight / Application": "Use for rapid execution; watch for burnout"
+  },
+  {
+    "Energy Code": "E104",
+    "Energy Code Name": "Worry Loop",
+    "Core Expression / Trait": "Tends to overthink risks or safety",
+    "Behavior Insight / Application": "Needs grounding and cognitive breaks"
+  },
+  {
+    "Energy Code": "E105",
+    "Energy Code Name": "Change Trigger",
+    "Core Expression / Trait": "Disrupts status quo easily",
+    "Behavior Insight / Application": "Useful in innovation, but can create instability"
+  },
+  {
+    "Energy Code": "E106",
+    "Energy Code Name": "Attention Pull",
+    "Core Expression / Trait": "Draws focus from others unintentionally",
+    "Behavior Insight / Application": "Natural center of attention or distraction"
+  },
+  {
+    "Energy Code": "E107",
+    "Energy Code Name": "Burnout Signal",
+    "Core Expression / Trait": "Pushes too far before resting",
+    "Behavior Insight / Application": "Requires structured recovery systems"
+  },
+  {
+    "Energy Code": "E108",
+    "Energy Code Name": "Independence Pulse",
+    "Core Expression / Trait": "Needs freedom, struggles with control",
+    "Behavior Insight / Application": "Ideal for autonomous work; clashes with rigid roles"
+  },
+  {
+    "Energy Code": "E109",
+    "Energy Code Name": "Conflict Spark",
+    "Core Expression / Trait": "Often triggers reactions or arguments",
+    "Behavior Insight / Application": "Needs tact; strong in debate or policy roles"
+  },
+  {
+    "Energy Code": "E110",
+    "Energy Code Name": "Memory Flood",
+    "Core Expression / Trait": "Strong recall of emotional events",
+    "Behavior Insight / Application": "Powerful in therapy/arts, but may get stuck in past"
+  },
+  {
+    "Energy Code": "E111",
+    "Energy Code Name": "Team Builder",
+    "Core Expression / Trait": "Focuses on connection and shared goals",
+    "Behavior Insight / Application": "Ideal for HR, community, coaching roles"
+  },
+  {
+    "Energy Code": "E112",
+    "Energy Code Name": "Alert Mind",
+    "Core Expression / Trait": "Hyper-aware of surroundings or details",
+    "Behavior Insight / Application": "Excellent in security, operations, crisis teams"
+  },
+  {
+    "Energy Code": "E113",
+    "Energy Code Name": "Self-Trust Filter",
+    "Core Expression / Trait": "Difficulty believing one’s own intuition",
+    "Behavior Insight / Application": "Needs feedback loops or validation from results"
+  },
+  {
+    "Energy Code": "E114",
+    "Energy Code Name": "Power Seeker",
+    "Core Expression / Trait": "Motivated by influence or control",
+    "Behavior Insight / Application": "Can be a natural leader or manipulator"
+  },
+  {
+    "Energy Code": "E115",
+    "Energy Code Name": "Soft Resilience",
+    "Core Expression / Trait": "Quiet but strong in adversity",
+    "Behavior Insight / Application": "Underestimated survivors, thrive under pressure"
+  },
+  {
+    "Energy Code": "E116",
+    "Energy Code Name": "Discomfort Avoider",
+    "Core Expression / Trait": "Avoids conflict, pain, or emotional truth",
+    "Behavior Insight / Application": "May delay growth; needs safe feedback systems"
+  },
+  {
+    "Energy Code": "E117",
+    "Energy Code Name": "Possibility Thinker",
+    "Core Expression / Trait": "Constantly imagines better futures",
+    "Behavior Insight / Application": "Ideal for vision work; needs grounding for execution"
+  },
+  {
+    "Energy Code": "E118",
+    "Energy Code Name": "Nervous Current",
+    "Core Expression / Trait": "Feels easily unsettled or restless",
+    "Behavior Insight / Application": "Can be high-output in motion; needs emotional safety"
+  },
+  {
+    "Energy Code": "E119",
+    "Energy Code Name": "Outcome Dependent",
+    "Core Expression / Trait": "Ties happiness to external success",
+    "Behavior Insight / Application": "May overwork or collapse when goals fail"
+  },
+  {
+    "Energy Code": "E120",
+    "Energy Code Name": "Resource Organizer",
+    "Core Expression / Trait": "Naturally manages tools, people, or time",
+    "Behavior Insight / Application": "Excellent in logistics, planning, and admin roles"
+  },
+  {
+    "Energy Code": "E121",
+    "Energy Code Name": "Private Space Code",
+    "Core Expression / Trait": "Needs solitude or controlled environment",
+    "Behavior Insight / Application": "Great in research or depth work; avoid open chaos"
+  },
+  {
+    "Energy Code": "E122",
+    "Energy Code Name": "Control vs Chaos Line",
+    "Core Expression / Trait": "Swings between over-control and letting go",
+    "Behavior Insight / Application": "Needs flexible routines to stabilize"
+  },
+  {
+    "Energy Code": "E123",
+    "Energy Code Name": "Idea Carrier",
+    "Core Expression / Trait": "Naturally births new models or concepts",
+    "Behavior Insight / Application": "Strong R&D or educational archetype"
+  },
+  {
+    "Energy Code": "E124",
+    "Energy Code Name": "Freedom Struggle",
+    "Core Expression / Trait": "Desires liberty but fears losing safety",
+    "Behavior Insight / Application": "Craves mobility with a fallback net"
+  },
+  {
+    "Energy Code": "E125",
+    "Energy Code Name": "Energetic Anchor",
+    "Core Expression / Trait": "Grounds others without trying",
+    "Behavior Insight / Application": "Strong in teams; watch for emotional exhaustion"
+  },
+  {
+    "Energy Code": "E126",
+    "Energy Code Name": "Self-Worth Dip",
+    "Core Expression / Trait": "Struggles with internal value in silence",
+    "Behavior Insight / Application": "Benefits from reflection + external proof moments"
+  },
+  {
+    "Energy Code": "E127",
+    "Energy Code Name": "Comparison Trap",
+    "Core Expression / Trait": "Constantly evaluates self vs others",
+    "Behavior Insight / Application": "May trigger jealousy or motivation depending on mindset"
+  },
+  {
+    "Energy Code": "E128",
+    "Energy Code Name": "Impulse Gate",
+    "Core Expression / Trait": "Makes fast decisions, sometimes rash",
+    "Behavior Insight / Application": "Powerful in emergency; risky in finance or HR"
+  },
+  {
+    "Energy Code": "E129",
+    "Energy Code Name": "Patience Signal",
+    "Core Expression / Trait": "Delayed response or long-term tolerance",
+    "Behavior Insight / Application": "Great in parenting, healing, strategy"
+  },
+  {
+    "Energy Code": "E130",
+    "Energy Code Name": "Legacy Builder",
+    "Core Expression / Trait": "Thinks about long-term contribution",
+    "Behavior Insight / Application": "Strong in leadership grooming, heritage creation"
+  },
+  {
+    "Energy Code": "E131",
+    "Energy Code Name": "Clarity Pulse",
+    "Core Expression / Trait": "Able to cut through confusion quickly",
+    "Behavior Insight / Application": "Ideal for decision-making roles, crisis leadership"
+  },
+  {
+    "Energy Code": "E132",
+    "Energy Code Name": "Shame Loop",
+    "Core Expression / Trait": "Repeats internal guilt narratives",
+    "Behavior Insight / Application": "Healing work around acceptance and reframing needed"
+  },
+  {
+    "Energy Code": "E133",
+    "Energy Code Name": "Distraction Magnet",
+    "Core Expression / Trait": "Pulled into others’ energy or ideas",
+    "Behavior Insight / Application": "Needs strong boundaries; focus tools essential"
+  },
+  {
+    "Energy Code": "E134",
+    "Energy Code Name": "Creative Overflow",
+    "Core Expression / Trait": "Flood of ideas, hard to choose",
+    "Behavior Insight / Application": "Ideal for brainstorming; needs clarity for action"
+  },
+  {
+    "Energy Code": "E135",
+    "Energy Code Name": "Stage Energy",
+    "Core Expression / Trait": "Performs well in front of others",
+    "Behavior Insight / Application": "Teachers, entertainers, pitch leaders"
+  },
+  {
+    "Energy Code": "E136",
+    "Energy Code Name": "Support Seeker",
+    "Core Expression / Trait": "Feels unsafe without backup",
+    "Behavior Insight / Application": "Strong in teams; needs visible allies"
+  },
+  {
+    "Energy Code": "E137",
+    "Energy Code Name": "Precision Thinker",
+    "Core Expression / Trait": "Cuts through noise with logic and order",
+    "Behavior Insight / Application": "Ideal for compliance, logic-based roles"
+  },
+  {
+    "Energy Code": "E138",
+    "Energy Code Name": "Survival Mode",
+    "Core Expression / Trait": "Lives on edge or prepares for worst-case",
+    "Behavior Insight / Application": "Watch for anxiety or health issues over time"
+  },
+  {
+    "Energy Code": "E139",
+    "Energy Code Name": "Belonging Craving",
+    "Core Expression / Trait": "Wants to feel accepted or part of a unit",
+    "Behavior Insight / Application": "Community-focused; struggles with rejection"
+  },
+  {
+    "Energy Code": "E140",
+    "Energy Code Name": "Future Fixation",
+    "Core Expression / Trait": "Obsessed with what’s next",
+    "Behavior Insight / Application": "Motivated by goals but risks missing the present"
+  },
+  {
+    "Energy Code": "E141",
+    "Energy Code Name": "Trust Builder",
+    "Core Expression / Trait": "Creates safe emotional spaces",
+    "Behavior Insight / Application": "Natural mentor or coach; ideal for team growth"
+  },
+  {
+    "Energy Code": "E142",
+    "Energy Code Name": "Energy Switch",
+    "Core Expression / Trait": "Shifts moods or energy rapidly",
+    "Behavior Insight / Application": "Can inspire or confuse others; good in fast-paced zones"
+  },
+  {
+    "Energy Code": "E143",
+    "Energy Code Name": "Self-Doubt Spike",
+    "Core Expression / Trait": "Sudden loss of confidence",
+    "Behavior Insight / Application": "Prone to hesitation before major steps"
+  },
+  {
+    "Energy Code": "E144",
+    "Energy Code Name": "Time Sensitivity",
+    "Core Expression / Trait": "Over-aware of deadlines or age",
+    "Behavior Insight / Application": "Motivated by urgency or pressured by it"
+  },
+  {
+    "Energy Code": "E145",
+    "Energy Code Name": "Quiet Exit Code",
+    "Core Expression / Trait": "Tends to withdraw when overwhelmed",
+    "Behavior Insight / Application": "Needs soft communication or pre-exit rituals"
+  },
+  {
+    "Energy Code": "E146",
+    "Energy Code Name": "Healing Channel",
+    "Core Expression / Trait": "Naturally restores others’ peace",
+    "Behavior Insight / Application": "Therapist, caregiver, spiritual leader potential"
+  },
+  {
+    "Energy Code": "E147",
+    "Energy Code Name": "Intensity Driver",
+    "Core Expression / Trait": "Does everything at full emotional volume",
+    "Behavior Insight / Application": "Burnout-prone; unstoppable when aligned"
+  },
+  {
+    "Energy Code": "E148",
+    "Energy Code Name": "Pattern Disruptor",
+    "Core Expression / Trait": "Breaks routines instinctively",
+    "Behavior Insight / Application": "Good for transformation; hard to manage in stable setups"
+  },
+  {
+    "Energy Code": "E149",
+    "Energy Code Name": "Emotion Split",
+    "Core Expression / Trait": "Feels two things at once",
+    "Behavior Insight / Application": "Creative and conflicted; needs emotional integration"
+  },
+  {
+    "Energy Code": "E150",
+    "Energy Code Name": "Inner Lock",
+    "Core Expression / Trait": "Shuts down under stress",
+    "Behavior Insight / Application": "Appears cold; needs time-based decompression tools"
+  },
+  {
+    "Energy Code": "E151",
+    "Energy Code Name": "Purpose Seeker",
+    "Core Expression / Trait": "Needs deep meaning to stay committed",
+    "Behavior Insight / Application": "Dissatisfied by shallow work; values alignment"
+  },
+  {
+    "Energy Code": "E152",
+    "Energy Code Name": "Chaos Navigator",
+    "Core Expression / Trait": "Operates well under disorder",
+    "Behavior Insight / Application": "Crisis teams, startups, fieldwork strong fit"
+  },
+  {
+    "Energy Code": "E153",
+    "Energy Code Name": "Power Avoider",
+    "Core Expression / Trait": "Shrinks from leadership despite ability",
+    "Behavior Insight / Application": "Benefits from gentle grooming; avoids visibility"
+  },
+  {
+    "Energy Code": "E154",
+    "Energy Code Name": "Control Magnet",
+    "Core Expression / Trait": "Attracts or clashes with authority figures",
+    "Behavior Insight / Application": "Strong polarity in parent, boss, mentor dynamics"
+  },
+  {
+    "Energy Code": "E155",
+    "Energy Code Name": "Listening Core",
+    "Core Expression / Trait": "Hears what’s not said",
+    "Behavior Insight / Application": "Good in emotional roles; may carry others' burdens"
+  },
+  {
+    "Energy Code": "E156",
+    "Energy Code Name": "Over-Apology Code",
+    "Core Expression / Trait": "Apologizes often or over-accepts blame",
+    "Behavior Insight / Application": "Needs work on boundaries and voice"
+  },
+  {
+    "Energy Code": "E157",
+    "Energy Code Name": "Idea Attachment",
+    "Core Expression / Trait": "Gets emotionally tied to concepts",
+    "Behavior Insight / Application": "Struggles with letting go or pivoting"
+  },
+  {
+    "Energy Code": "E158",
+    "Energy Code Name": "Filterless Channel",
+    "Core Expression / Trait": "Says or shares too much without check",
+    "Behavior Insight / Application": "Authentic but needs emotional regulation practice"
+  },
+  {
+    "Energy Code": "E159",
+    "Energy Code Name": "Surrender Path",
+    "Core Expression / Trait": "Trusts larger flow when allowed",
+    "Behavior Insight / Application": "Grows in spiritual roles, patient-centered environments"
+  },
+  {
+    "Energy Code": "E160",
+    "Energy Code Name": "Trigger Watch",
+    "Core Expression / Trait": "Reacts quickly to certain words or patterns",
+    "Behavior Insight / Application": "Best handled with self-awareness and narrative reframing"
+  },
+  {
+    "Energy Code": "E161",
+    "Energy Code Name": "Role Seeker",
+    "Core Expression / Trait": "Craves clarity of position or identity",
+    "Behavior Insight / Application": "May feel lost without defined place in systems"
+  },
+  {
+    "Energy Code": "E162",
+    "Energy Code Name": "Environment Shaper",
+    "Core Expression / Trait": "Affects room energy by presence",
+    "Behavior Insight / Application": "High influence in meetings, teams, group healing"
+  },
+  {
+    "Energy Code": "E163",
+    "Energy Code Name": "Fragile Confidence",
+    "Core Expression / Trait": "Confidence wavers easily after setbacks",
+    "Behavior Insight / Application": "Grows with reinforcement and paced exposure"
+  },
+  {
+    "Energy Code": "E164",
+    "Energy Code Name": "Structure Craver",
+    "Core Expression / Trait": "Feels safe in plans, routines, order",
+    "Behavior Insight / Application": "Loses energy in open-ended or messy setups"
+  },
+  {
+    "Energy Code": "E165",
+    "Energy Code Name": "Repetition Loop",
+    "Core Expression / Trait": "Relives patterns or choices unconsciously",
+    "Behavior Insight / Application": "Powerful for awareness-based coaching or therapy"
+  },
+  {
+    "Energy Code": "E166",
+    "Energy Code Name": "Social Battery Code",
+    "Core Expression / Trait": "Drains quickly in groups or recharges there",
+    "Behavior Insight / Application": "Needs scheduling that respects energetic flow"
+  },
+  {
+    "Energy Code": "E167",
+    "Energy Code Name": "Future Imprint",
+    "Core Expression / Trait": "Operates from a sense of future calling",
+    "Behavior Insight / Application": "May neglect present but deeply vision-led"
+  },
+  {
+    "Energy Code": "E168",
+    "Energy Code Name": "Past Story Holder",
+    "Core Expression / Trait": "Identifies strongly with origin narratives",
+    "Behavior Insight / Application": "Great in healing, legacy, or cause-based roles"
+  },
+  {
+    "Energy Code": "E169",
+    "Energy Code Name": "Reaction Lock",
+    "Core Expression / Trait": "Freezes when emotionally overloaded",
+    "Behavior Insight / Application": "Needs safe trigger exits and slow-release work"
+  },
+  {
+    "Energy Code": "E170",
+    "Energy Code Name": "Hyper Focus Channel",
+    "Core Expression / Trait": "Zeros in deeply on tasks or ideas",
+    "Behavior Insight / Application": "Ideal in design, research, coding; may miss context"
+  },
+  {
+    "Energy Code": "E171",
+    "Energy Code Name": "Visibility Fear",
+    "Core Expression / Trait": "Avoids being seen or praised",
+    "Behavior Insight / Application": "Powerful potential, blocked by spotlight tension"
+  },
+  {
+    "Energy Code": "E172",
+    "Energy Code Name": "Guilt Driver",
+    "Core Expression / Trait": "Operates from internal or social guilt",
+    "Behavior Insight / Application": "Strong ethics but may feel heavy under pressure"
+  },
+  {
+    "Energy Code": "E173",
+    "Energy Code Name": "Relational Sensor",
+    "Core Expression / Trait": "Reads emotional signals in others fast",
+    "Behavior Insight / Application": "Natural mediator, but vulnerable to mood absorption"
+  },
+  {
+    "Energy Code": "E174",
+    "Energy Code Name": "Escape Code",
+    "Core Expression / Trait": "Looks for exit in discomfort",
+    "Behavior Insight / Application": "May delay hard conversations; good with structured check-ins"
+  },
+  {
+    "Energy Code": "E175",
+    "Energy Code Name": "Energy Resetter",
+    "Core Expression / Trait": "Able to recover quickly from setbacks",
+    "Behavior Insight / Application": "Resilient and flexible; ideal in high-stress industries"
+  },
+  {
+    "Energy Code": "E176",
+    "Energy Code Name": "Overload Threshold",
+    "Core Expression / Trait": "Carries too much before collapsing",
+    "Behavior Insight / Application": "Strong work ethic; must track energy boundaries"
+  },
+  {
+    "Energy Code": "E177",
+    "Energy Code Name": "Reflection Field",
+    "Core Expression / Trait": "Deep inner awareness loop",
+    "Behavior Insight / Application": "Ideal for thought leaders, spiritual guides, poets"
+  },
+  {
+    "Energy Code": "E178",
+    "Energy Code Name": "Emotional Reset Switch",
+    "Core Expression / Trait": "Can shift quickly from chaos to calm",
+    "Behavior Insight / Application": "Great in mentoring or conflict resolution"
+  },
+  {
+    "Energy Code": "E179",
+    "Energy Code Name": "Dual Role Dissonance",
+    "Core Expression / Trait": "Feels torn between two life roles",
+    "Behavior Insight / Application": "Common in working parents, creatives, hybrids"
+  },
+  {
+    "Energy Code": "E180",
+    "Energy Code Name": "Life Loop Awareness",
+    "Core Expression / Trait": "Aware of cycles, timing, life phases",
+    "Behavior Insight / Application": "Natural planner or coach; may get stuck forecasting"
+  },
+  {
+    "Energy Code": "E181",
+    "Energy Code Name": "Time Drifter",
+    "Core Expression / Trait": "Struggles with structure and deadlines",
+    "Behavior Insight / Application": "Needs flexibility, not rigidity; best in creative or flow-based roles"
+  },
+  {
+    "Energy Code": "E182",
+    "Energy Code Name": "Approval Chaser",
+    "Core Expression / Trait": "Depends on external praise to feel worthy",
+    "Behavior Insight / Application": "Benefits from self-trust practices and clear feedback loops"
+  },
+  {
+    "Energy Code": "E183",
+    "Energy Code Name": "Idea Flipper",
+    "Core Expression / Trait": "Frequently changes opinions or plans",
+    "Behavior Insight / Application": "Adaptive but may confuse teams; needs focus rituals"
+  },
+  {
+    "Energy Code": "E184",
+    "Energy Code Name": "Closure Delayer",
+    "Core Expression / Trait": "Avoids or postpones final decisions",
+    "Behavior Insight / Application": "Helpful in brainstorming; struggles in execution roles"
+  },
+  {
+    "Energy Code": "E185",
+    "Energy Code Name": "Direction Finder",
+    "Core Expression / Trait": "Seeks guidance before moving",
+    "Behavior Insight / Application": "Best paired with mentors or clear roadmaps"
+  },
+  {
+    "Energy Code": "E186",
+    "Energy Code Name": "Role Fader",
+    "Core Expression / Trait": "Loses clarity in hierarchy or identity",
+    "Behavior Insight / Application": "Strong in fluid environments, weak in strict systems"
+  },
+  {
+    "Energy Code": "E187",
+    "Energy Code Name": "Reassurance Loop",
+    "Core Expression / Trait": "Needs to be reminded of their value",
+    "Behavior Insight / Application": "Best in nurturing teams or coaching frameworks"
+  },
+  {
+    "Energy Code": "E188",
+    "Energy Code Name": "Peace Preserver",
+    "Core Expression / Trait": "Avoids tension at all costs",
+    "Behavior Insight / Application": "Useful in mediation roles, may suppress truth"
+  },
+  {
+    "Energy Code": "E189",
+    "Energy Code Name": "Past Weight Carrier",
+    "Core Expression / Trait": "Holds on to old wounds or patterns",
+    "Behavior Insight / Application": "Benefits from trauma healing and emotional decluttering"
+  },
+  {
+    "Energy Code": "E190",
+    "Energy Code Name": "System Breaker",
+    "Core Expression / Trait": "Sees flaws in established systems",
+    "Behavior Insight / Application": "Good for rethinking models, can create resistance"
+  },
+  {
+    "Energy Code": "E191",
+    "Energy Code Name": "Impatience Pulse",
+    "Core Expression / Trait": "Dislikes waiting or slow processes",
+    "Behavior Insight / Application": "Agile roles fit well; needs breathwork or delay tools"
+  },
+  {
+    "Energy Code": "E192",
+    "Energy Code Name": "Role Blender",
+    "Core Expression / Trait": "Mixes professional and personal energy",
+    "Behavior Insight / Application": "May struggle with boundaries; thrives in authentic cultures"
+  },
+  {
+    "Energy Code": "E193",
+    "Energy Code Name": "Self-Image Mirror",
+    "Core Expression / Trait": "Shapes identity by others’ perceptions",
+    "Behavior Insight / Application": "Needs autonomy coaching to build internal compass"
+  },
+  {
+    "Energy Code": "E194",
+    "Energy Code Name": "Stillness Avoider",
+    "Core Expression / Trait": "Always busy or in motion",
+    "Behavior Insight / Application": "Requires structured rest and reflection tools"
+  },
+  {
+    "Energy Code": "E195",
+    "Energy Code Name": "Self-Correction Bias",
+    "Core Expression / Trait": "Over-edits or revises endlessly",
+    "Behavior Insight / Application": "Ideal in quality control; needs finalization habits"
+  },
+  {
+    "Energy Code": "E196",
+    "Energy Code Name": "Power Guard",
+    "Core Expression / Trait": "Avoids being misused or controlled",
+    "Behavior Insight / Application": "Sensitive to dominance; thrives in egalitarian spaces"
+  },
+  {
+    "Energy Code": "E197",
+    "Energy Code Name": "Inspiration Chaser",
+    "Core Expression / Trait": "Gets high on new ideas, but drops them fast",
+    "Behavior Insight / Application": "Useful in strategy or pitching; may require follow-through support"
+  },
+  {
+    "Energy Code": "E198",
+    "Energy Code Name": "Over-Prepared Mode",
+    "Core Expression / Trait": "Overthinks before taking action",
+    "Behavior Insight / Application": "Great in planning roles; needs speed-training for agility"
+  },
+  {
+    "Energy Code": "E199",
+    "Energy Code Name": "Spark Starter",
+    "Core Expression / Trait": "Instinctively triggers new ideas or movements",
+    "Behavior Insight / Application": "Ideal for R&D, startups, ideation teams"
+  },
+  {
+    "Energy Code": "E200",
+    "Energy Code Name": "Letting Go Struggle",
+    "Core Expression / Trait": "Difficulty releasing what’s familiar",
+    "Behavior Insight / Application": "Coaching around endings and identity detachment helpful"
+  },
+  {
+    "Energy Code": "E201",
+    "Energy Code Name": "Praise Resistor",
+    "Core Expression / Trait": "Rejects compliments or downplays success",
+    "Behavior Insight / Application": "Humble, but may block growth and recognition"
+  },
+  {
+    "Energy Code": "E202",
+    "Energy Code Name": "Emotional Storage Tank",
+    "Core Expression / Trait": "Absorbs feelings and holds them quietly",
+    "Behavior Insight / Application": "Powerful depth; needs periodic emotional flushing"
+  },
+  {
+    "Energy Code": "E203",
+    "Energy Code Name": "Impact Craver",
+    "Core Expression / Trait": "Seeks meaningful contribution everywhere",
+    "Behavior Insight / Application": "Good in mission-led orgs; disillusioned by bureaucracy"
+  },
+  {
+    "Energy Code": "E204",
+    "Energy Code Name": "Story Rewriter",
+    "Core Expression / Trait": "Revisits life events through new meanings",
+    "Behavior Insight / Application": "Strong in personal growth, therapy, writing"
+  },
+  {
+    "Energy Code": "E205",
+    "Energy Code Name": "Sparkle Craver",
+    "Core Expression / Trait": "Likes excitement, thrill, or admiration",
+    "Behavior Insight / Application": "Magnetic in media, events; needs balance of grounding"
+  },
+  {
+    "Energy Code": "E206",
+    "Energy Code Name": "Subtle Voice",
+    "Core Expression / Trait": "Soft communicator, often unheard",
+    "Behavior Insight / Application": "Needs empowered expression tools and safe feedback loops"
+  },
+  {
+    "Energy Code": "E207",
+    "Energy Code Name": "Performance Driver",
+    "Core Expression / Trait": "Always feels they’re being watched or judged",
+    "Behavior Insight / Application": "Motivated, but may struggle with authenticity"
+  },
+  {
+    "Energy Code": "E208",
+    "Energy Code Name": "Layer Jumper",
+    "Core Expression / Trait": "Jumps from surface to depth fast",
+    "Behavior Insight / Application": "Insightful but misunderstood; ideal for deep coaching"
+  },
+  {
+    "Energy Code": "E209",
+    "Energy Code Name": "Logic Wall",
+    "Core Expression / Trait": "Blocks emotion with excessive rationality",
+    "Behavior Insight / Application": "Great in data roles; needs emotional fluency growth"
+  },
+  {
+    "Energy Code": "E210",
+    "Energy Code Name": "Warmth Receiver",
+    "Core Expression / Trait": "Energized by kindness, softness, care",
+    "Behavior Insight / Application": "Thrives in human-first cultures; avoid hyper-critical spaces"
+  },
+  {
+    "Energy Code": "E211",
+    "Energy Code Name": "Boundary Blur",
+    "Core Expression / Trait": "Lets people cross emotional limits",
+    "Behavior Insight / Application": "Needs assertiveness training and energy shielding"
+  },
+  {
+    "Energy Code": "E212",
+    "Energy Code Name": "Speed Learner",
+    "Core Expression / Trait": "Grasps new concepts rapidly",
+    "Behavior Insight / Application": "Ideal for evolving roles, product teams, new industries"
+  },
+  {
+    "Energy Code": "E213",
+    "Energy Code Name": "Focus Jumper",
+    "Core Expression / Trait": "Moves from one task to another easily",
+    "Behavior Insight / Application": "Agile, but benefits from time-boxing and single-tasking rituals"
+  },
+  {
+    "Energy Code": "E214",
+    "Energy Code Name": "Vision Grounder",
+    "Core Expression / Trait": "Turns lofty ideas into concrete action",
+    "Behavior Insight / Application": "Ideal in CEO, ops, or product architect roles"
+  },
+  {
+    "Energy Code": "E215",
+    "Energy Code Name": "Reverse Flow",
+    "Core Expression / Trait": "Feels tired when others are energized",
+    "Behavior Insight / Application": "Needs custom productivity rhythm, not group templates"
+  },
+  {
+    "Energy Code": "E216",
+    "Energy Code Name": "Trust Builder II",
+    "Core Expression / Trait": "Slowly earns loyalty through quiet actions",
+    "Behavior Insight / Application": "Not instant rapport; long-term reliability"
+  },
+  {
+    "Energy Code": "E217",
+    "Energy Code Name": "Challenge Magnet",
+    "Core Expression / Trait": "Attracts or creates friction for growth",
+    "Behavior Insight / Application": "Powerful growth leader; may feel life is always “hard”"
+  },
+  {
+    "Energy Code": "E218",
+    "Energy Code Name": "Sacred Space Keeper",
+    "Core Expression / Trait": "Needs emotional or spiritual quiet zones",
+    "Behavior Insight / Application": "Sensitive to noise, crowds, overstimulation"
+  },
+  {
+    "Energy Code": "E219",
+    "Energy Code Name": "Thought Spiral",
+    "Core Expression / Trait": "Over-processes situations internally",
+    "Behavior Insight / Application": "Meditation, journaling, or cognitive off-switches helpful"
+  },
+  {
+    "Energy Code": "E220",
+    "Energy Code Name": "Heart-Centered Driver",
+    "Core Expression / Trait": "Makes choices based on feeling, not logic",
+    "Behavior Insight / Application": "Beautiful in healing, risky in finance or law without support"
+  },
+  {
+    "Energy Code": "E221",
+    "Energy Code Name": "Self-Direction Code",
+    "Core Expression / Trait": "Knows where to go without external input",
+    "Behavior Insight / Application": "Independent pathfinder; thrives in solo or leadership roles"
+  },
+  {
+    "Energy Code": "E222",
+    "Energy Code Name": "Noise Filter",
+    "Core Expression / Trait": "Tunes out distractions with ease",
+    "Behavior Insight / Application": "Strong in focus zones, needs quiet environments"
+  },
+  {
+    "Energy Code": "E223",
+    "Energy Code Name": "Hope Reset",
+    "Core Expression / Trait": "Rebuilds optimism after setbacks",
+    "Behavior Insight / Application": "Resilient and uplifting during recovery or team rebuilding"
+  },
+  {
+    "Energy Code": "E224",
+    "Energy Code Name": "Group Identity Pull",
+    "Core Expression / Trait": "Merges into team or culture easily",
+    "Behavior Insight / Application": "Cooperative but may lose individuality"
+  },
+  {
+    "Energy Code": "E225",
+    "Energy Code Name": "Trusting Too Soon",
+    "Core Expression / Trait": "Opens up quickly without boundaries",
+    "Behavior Insight / Application": "May attract betrayal; needs energy awareness"
+  },
+  {
+    "Energy Code": "E226",
+    "Energy Code Name": "Purpose Lock",
+    "Core Expression / Trait": "Refuses to act unless there is clear meaning",
+    "Behavior Insight / Application": "Motivated in mission-led work; unproductive in empty tasks"
+  },
+  {
+    "Energy Code": "E227",
+    "Energy Code Name": "Excitement Dependence",
+    "Core Expression / Trait": "Struggles in calm or slow settings",
+    "Behavior Insight / Application": "Best in fast-growth industries or creative crisis teams"
+  },
+  {
+    "Energy Code": "E228",
+    "Energy Code Name": "Doubt Mirror",
+    "Core Expression / Trait": "Reflects others’ uncertainty or fear",
+    "Behavior Insight / Application": "Needs clear environments; coaching support helps"
+  },
+  {
+    "Energy Code": "E229",
+    "Energy Code Name": "Freeze Under Pressure",
+    "Core Expression / Trait": "Stops or delays action in high-stakes moments",
+    "Behavior Insight / Application": "Needs decision frameworks and safety rituals"
+  },
+  {
+    "Energy Code": "E230",
+    "Energy Code Name": "Gift Amplifier",
+    "Core Expression / Trait": "Enhances others' talents just by presence",
+    "Behavior Insight / Application": "Strong coach, partner, or guide in performance roles"
+  },
+  {
+    "Energy Code": "E231",
+    "Energy Code Name": "Control Resistor",
+    "Core Expression / Trait": "Pushes back against forced rules or systems",
+    "Behavior Insight / Application": "Innovator or rebel, best in trust-based structures"
+  },
+  {
+    "Energy Code": "E232",
+    "Energy Code Name": "Image Crafter",
+    "Core Expression / Trait": "Carefully manages public impression",
+    "Behavior Insight / Application": "Ideal for branding/media; may become performative"
+  },
+  {
+    "Energy Code": "E233",
+    "Energy Code Name": "Body Wisdom Trigger",
+    "Core Expression / Trait": "Senses truth physically before mentally",
+    "Behavior Insight / Application": "Trusts gut; excels in design, healing, physical work"
+  },
+  {
+    "Energy Code": "E234",
+    "Energy Code Name": "Recovery Memory",
+    "Core Expression / Trait": "Remembers how healing happened",
+    "Behavior Insight / Application": "Natural therapist or repeat survivor role"
+  },
+  {
+    "Energy Code": "E235",
+    "Energy Code Name": "Social Role Flip",
+    "Core Expression / Trait": "Acts differently in different groups",
+    "Behavior Insight / Application": "Can adapt or feel disoriented without core anchor"
+  },
+  {
+    "Energy Code": "E236",
+    "Energy Code Name": "Quiet Observer",
+    "Core Expression / Trait": "Watches deeply before acting",
+    "Behavior Insight / Application": "Strategic thinker; easily missed in group dynamics"
+  },
+  {
+    "Energy Code": "E237",
+    "Energy Code Name": "Pressure Talker",
+    "Core Expression / Trait": "Speaks more under stress or tension",
+    "Behavior Insight / Application": "Verbal processor; needs space to pause"
+  },
+  {
+    "Energy Code": "E238",
+    "Energy Code Name": "Overfocus Tendency",
+    "Core Expression / Trait": "Fixates on one detail, misses the big picture",
+    "Behavior Insight / Application": "Needs system view tools and big-picture nudges"
+  },
+  {
+    "Energy Code": "E239",
+    "Energy Code Name": "Feedback Filter",
+    "Core Expression / Trait": "Reacts strongly or not at all to critique",
+    "Behavior Insight / Application": "Requires personalized feedback style to grow"
+  },
+  {
+    "Energy Code": "E240",
+    "Energy Code Name": "Endings Explorer",
+    "Core Expression / Trait": "Obsesses over closure or endings",
+    "Behavior Insight / Application": "Good in transition design; may over-hold emotions"
+  },
+  {
+    "Energy Code": "E241",
+    "Energy Code Name": "Future Blind Spot",
+    "Core Expression / Trait": "Can't see what’s ahead clearly",
+    "Behavior Insight / Application": "Needs planning support or timeline visualizers"
+  },
+  {
+    "Energy Code": "E242",
+    "Energy Code Name": "Emotion Layer Stack",
+    "Core Expression / Trait": "Feels several emotions at once",
+    "Behavior Insight / Application": "Deeply complex; great in poetry, therapy, shadow work"
+  },
+  {
+    "Energy Code": "E243",
+    "Energy Code Name": "Safety First Line",
+    "Core Expression / Trait": "Makes choices based on protection needs",
+    "Behavior Insight / Application": "Strong in finance, legal, security; avoids creative risk"
+  },
+  {
+    "Energy Code": "E244",
+    "Energy Code Name": "Space Expansion Code",
+    "Core Expression / Trait": "Feels suffocated in confined spaces/roles",
+    "Behavior Insight / Application": "Needs mental, emotional, or physical openness"
+  },
+  {
+    "Energy Code": "E245",
+    "Energy Code Name": "Validation Loop",
+    "Core Expression / Trait": "Needs consistent confirmation of worth",
+    "Behavior Insight / Application": "Coaching or affirmation systems help stabilize motivation"
+  },
+  {
+    "Energy Code": "E246",
+    "Energy Code Name": "Repeat Thought Stream",
+    "Core Expression / Trait": "Cyclical mental patterns",
+    "Behavior Insight / Application": "Meditation and reframing techniques useful"
+  },
+  {
+    "Energy Code": "E247",
+    "Energy Code Name": "Emotional Absorber",
+    "Core Expression / Trait": "Takes in moods of people or places",
+    "Behavior Insight / Application": "Sensitive; must protect energy field consciously"
+  },
+  {
+    "Energy Code": "E248",
+    "Energy Code Name": "Pushback Habit",
+    "Core Expression / Trait": "Resists even helpful advice instinctively",
+    "Behavior Insight / Application": "Needs trust-building and co-created structure"
+  },
+  {
+    "Energy Code": "E249",
+    "Energy Code Name": "Short-Term Sprint Energy",
+    "Core Expression / Trait": "Best in short bursts of activity",
+    "Behavior Insight / Application": "Time-blocked work and break cycles improve output"
+  },
+  {
+    "Energy Code": "E250",
+    "Energy Code Name": "Identity Anchor",
+    "Core Expression / Trait": "Maintains sense of self across all roles",
+    "Behavior Insight / Application": "Strong inner compass; grounding for others"
+  },
+  {
+    "Energy Code": "E251",
+    "Energy Code Name": "Emotional Delay",
+    "Core Expression / Trait": "Realizes feelings after time passes",
+    "Behavior Insight / Application": "May appear cold initially; deep processer"
+  },
+  {
+    "Energy Code": "E252",
+    "Energy Code Name": "Attention Splitter",
+    "Core Expression / Trait": "Gets distracted by internal or external input",
+    "Behavior Insight / Application": "Mind-mapping and clarity rituals help focus"
+  },
+  {
+    "Energy Code": "E253",
+    "Energy Code Name": "Passive Resistance Code",
+    "Core Expression / Trait": "Rejects rules silently rather than vocally",
+    "Behavior Insight / Application": "Needs trust-based autonomy to perform fully"
+  },
+  {
+    "Energy Code": "E254",
+    "Energy Code Name": "Voice of Truth",
+    "Core Expression / Trait": "Speaks clearly and cleanly when aligned",
+    "Behavior Insight / Application": "Natural speaker, teacher, leader in aligned roles"
+  },
+  {
+    "Energy Code": "E255",
+    "Energy Code Name": "Tension Loop",
+    "Core Expression / Trait": "Constant low-grade internal stress",
+    "Behavior Insight / Application": "Breathwork, movement, or creative expression helps clear it"
+  },
+  {
+    "Energy Code": "E256",
+    "Energy Code Name": "Risk Intuition",
+    "Core Expression / Trait": "Senses what will go wrong before others do",
+    "Behavior Insight / Application": "Strong asset in investment, strategy, legal risk roles"
+  },
+  {
+    "Energy Code": "E257",
+    "Energy Code Name": "Dream Connector",
+    "Core Expression / Trait": "Links imagination to daily reality",
+    "Behavior Insight / Application": "Ideal in product design, therapy, creative research"
+  },
+  {
+    "Energy Code": "E258",
+    "Energy Code Name": "Pattern Memory",
+    "Core Expression / Trait": "Recalls specific behavioral loops over time",
+    "Behavior Insight / Application": "Great in HR, audit, psych mapping; needs detachment tools"
+  },
+  {
+    "Energy Code": "E259",
+    "Energy Code Name": "Hyper Alert Response",
+    "Core Expression / Trait": "Scans surroundings automatically for danger",
+    "Behavior Insight / Application": "Trauma-linked; strong in safety or survival zones"
+  },
+  {
+    "Energy Code": "E260",
+    "Energy Code Name": "Boundary Resetter",
+    "Core Expression / Trait": "Rebuilds healthy limits after collapse",
+    "Behavior Insight / Application": "Strong comeback energy; ideal for coaching and team culture leadership"
+  },
+  {
+    "Energy Code": "E261",
+    "Energy Code Name": "Self-Soothing Code",
+    "Core Expression / Trait": "Calms down using internal resources",
+    "Behavior Insight / Application": "Strong emotional regulator; good in parenting or healing roles"
+  },
+  {
+    "Energy Code": "E262",
+    "Energy Code Name": "Overcommit Loop",
+    "Core Expression / Trait": "Says yes too often, struggles with limits",
+    "Behavior Insight / Application": "Needs scheduling discipline and priority systems"
+  },
+  {
+    "Energy Code": "E263",
+    "Energy Code Name": "Status Sensitivity",
+    "Core Expression / Trait": "Responds strongly to hierarchy or title",
+    "Behavior Insight / Application": "Can thrive or feel trapped depending on role clarity"
+  },
+  {
+    "Energy Code": "E264",
+    "Energy Code Name": "Forgiveness Code",
+    "Core Expression / Trait": "Lets go easily after conflict",
+    "Behavior Insight / Application": "Excellent in diplomacy, peacemaking, and conflict coaching"
+  },
+  {
+    "Energy Code": "E265",
+    "Energy Code Name": "Future Idealism",
+    "Core Expression / Trait": "Holds strong visions about how life should be",
+    "Behavior Insight / Application": "Inspiring but may feel disappointed with current reality"
+  },
+  {
+    "Energy Code": "E266",
+    "Energy Code Name": "Energy Drain Zone",
+    "Core Expression / Trait": "Feels exhausted around certain people/tasks",
+    "Behavior Insight / Application": "Needs environment matching and energetic hygiene"
+  },
+  {
+    "Energy Code": "E267",
+    "Energy Code Name": "Reconnection Drive",
+    "Core Expression / Trait": "Always tries to repair or return to people",
+    "Behavior Insight / Application": "Loyalty-focused, but may chase unhealthy bonds"
+  },
+  {
+    "Energy Code": "E268",
+    "Energy Code Name": "Inner Clarity Stream",
+    "Core Expression / Trait": "Gains insight through silence and reflection",
+    "Behavior Insight / Application": "Strong journaling and solo decision-making profile"
+  },
+  {
+    "Energy Code": "E269",
+    "Energy Code Name": "Emotional First Mover",
+    "Core Expression / Trait": "Feels before thinking",
+    "Behavior Insight / Application": "Good in human-centered work; may need cognitive scaffolding"
+  },
+  {
+    "Energy Code": "E270",
+    "Energy Code Name": "Thought-Driven Energy",
+    "Core Expression / Trait": "Acts based on analysis before emotion",
+    "Behavior Insight / Application": "Strategic roles; needs help recognizing emotional tone"
+  },
+  {
+    "Energy Code": "E271",
+    "Energy Code Name": "Approval Filter",
+    "Core Expression / Trait": "Screens ideas based on how they’ll be judged",
+    "Behavior Insight / Application": "Strong in PR/media; vulnerable to peer pressure"
+  },
+  {
+    "Energy Code": "E272",
+    "Energy Code Name": "Relational Replay",
+    "Core Expression / Trait": "Repeats same emotional pattern in new people",
+    "Behavior Insight / Application": "Needs pattern awareness; valuable in therapy design"
+  },
+  {
+    "Energy Code": "E273",
+    "Energy Code Name": "Rest Rhythm Code",
+    "Core Expression / Trait": "Needs customized rest cycles to function",
+    "Behavior Insight / Application": "Should not follow generic productivity advice"
+  },
+  {
+    "Energy Code": "E274",
+    "Energy Code Name": "Presence Magnet",
+    "Core Expression / Trait": "Others feel safe or open around them",
+    "Behavior Insight / Application": "Strong in healing, education, HR roles"
+  },
+  {
+    "Energy Code": "E275",
+    "Energy Code Name": "Loyalty Anchor",
+    "Core Expression / Trait": "Stays even when others leave",
+    "Behavior Insight / Application": "Deep bonds; risk of staying in draining dynamics"
+  },
+  {
+    "Energy Code": "E276",
+    "Energy Code Name": "Drive Cut-Off",
+    "Core Expression / Trait": "Momentum drops suddenly without cause",
+    "Behavior Insight / Application": "Needs motivational reboots and mid-project support"
+  },
+  {
+    "Energy Code": "E277",
+    "Energy Code Name": "Energy Echo",
+    "Core Expression / Trait": "Recalls how things felt, not just what happened",
+    "Behavior Insight / Application": "Highly emotional memory; may misinterpret intention"
+  },
+  {
+    "Energy Code": "E278",
+    "Energy Code Name": "Adaptation Spark",
+    "Core Expression / Trait": "Changes quickly to fit new environments",
+    "Behavior Insight / Application": "Agile in change zones; may forget long-term grounding"
+  },
+  {
+    "Energy Code": "E279",
+    "Energy Code Name": "Trust Caution Code",
+    "Core Expression / Trait": "Opens slowly over time",
+    "Behavior Insight / Application": "Long-term team player; requires high integrity systems"
+  },
+  {
+    "Energy Code": "E280",
+    "Energy Code Name": "Self-Holding Pattern",
+    "Core Expression / Trait": "Processes feelings internally before sharing",
+    "Behavior Insight / Application": "Appears quiet but deeply aware; best when invited in"
+  },
+  {
+    "Energy Code": "E281",
+    "Energy Code Name": "Performance Identity",
+    "Core Expression / Trait": "Self-worth linked to output",
+    "Behavior Insight / Application": "Risks burnout; thrives in recognition-rich systems"
+  },
+  {
+    "Energy Code": "E282",
+    "Energy Code Name": "Internal Battle Zone",
+    "Core Expression / Trait": "Frequent emotional vs. logical conflict",
+    "Behavior Insight / Application": "Requires synthesis techniques like mind–emotion journaling"
+  },
+  {
+    "Energy Code": "E283",
+    "Energy Code Name": "Support Expectation",
+    "Core Expression / Trait": "Feels let down if not supported in effort",
+    "Behavior Insight / Application": "Needs strong partnership models and check-in systems"
+  },
+  {
+    "Energy Code": "E284",
+    "Energy Code Name": "Structure Overdrive",
+    "Core Expression / Trait": "Becomes rigid with plans or rules",
+    "Behavior Insight / Application": "Effective in systems design; risks resistance to change"
+  },
+  {
+    "Energy Code": "E285",
+    "Energy Code Name": "Unspoken Needs Layer",
+    "Core Expression / Trait": "Doesn’t articulate help or emotional needs",
+    "Behavior Insight / Application": "May feel unseen; best in emotionally literate environments"
+  },
+  {
+    "Energy Code": "E286",
+    "Energy Code Name": "Rapid Response Engine",
+    "Core Expression / Trait": "Acts instantly under pressure",
+    "Behavior Insight / Application": "Strong in crisis zones; needs processing afterward"
+  },
+  {
+    "Energy Code": "E287",
+    "Energy Code Name": "Meaning Amplifier",
+    "Core Expression / Trait": "Finds depth in small experiences",
+    "Behavior Insight / Application": "Ideal in mentorship, poetry, content, therapy"
+  },
+  {
+    "Energy Code": "E288",
+    "Energy Code Name": "Closure Seeker II",
+    "Core Expression / Trait": "Needs emotional finality to move on",
+    "Behavior Insight / Application": "May stay stuck in grief or relational endings"
+  },
+  {
+    "Energy Code": "E289",
+    "Energy Code Name": "Choice Paralysis Zone",
+    "Core Expression / Trait": "Freezes when too many options appear",
+    "Behavior Insight / Application": "Needs structured decision systems and filters"
+  },
+  {
+    "Energy Code": "E290",
+    "Energy Code Name": "Silent Rebellion Field",
+    "Core Expression / Trait": "Resists quietly instead of vocally",
+    "Behavior Insight / Application": "Important to invite feedback, not assume compliance"
+  },
+  {
+    "Energy Code": "E291",
+    "Energy Code Name": "Depth Craving Line",
+    "Core Expression / Trait": "Prefers intensity over surface-level life",
+    "Behavior Insight / Application": "Great in therapy, research, creative storytelling"
+  },
+  {
+    "Energy Code": "E292",
+    "Energy Code Name": "Visibility Surge",
+    "Core Expression / Trait": "Craves recognition suddenly or unexpectedly",
+    "Behavior Insight / Application": "Benefits from balanced visibility planning"
+  },
+  {
+    "Energy Code": "E293",
+    "Energy Code Name": "Task Escape Mode",
+    "Core Expression / Trait": "Avoids what feels overwhelming or unclear",
+    "Behavior Insight / Application": "Needs chunking techniques and clarity rituals"
+  },
+  {
+    "Energy Code": "E294",
+    "Energy Code Name": "Emotional Flashback Field",
+    "Core Expression / Trait": "Sudden reliving of emotional memory",
+    "Behavior Insight / Application": "Healing practices, inner child work recommended"
+  },
+  {
+    "Energy Code": "E295",
+    "Energy Code Name": "Hope-Restoration Spark",
+    "Core Expression / Trait": "Revives morale even in tough settings",
+    "Behavior Insight / Application": "Ideal for leadership, recovery teams, change agents"
+  },
+  {
+    "Energy Code": "E296",
+    "Energy Code Name": "Image Discomfort Zone",
+    "Core Expression / Trait": "Dislikes being perceived inaccurately",
+    "Behavior Insight / Application": "Hyper-aware in social settings; needs reputation coaching"
+  },
+  {
+    "Energy Code": "E297",
+    "Energy Code Name": "Intimacy Push-Pull",
+    "Core Expression / Trait": "Desires closeness but fears vulnerability",
+    "Behavior Insight / Application": "Needs time-bound intimacy building, trust rhythm"
+  },
+  {
+    "Energy Code": "E298",
+    "Energy Code Name": "Support System Architect",
+    "Core Expression / Trait": "Designs emotional or structural support for others",
+    "Behavior Insight / Application": "Strong in HR, family dynamics, mentorship roles"
+  },
+  {
+    "Energy Code": "E299",
+    "Energy Code Name": "Belief Resetter",
+    "Core Expression / Trait": "Regularly changes worldview or inner code",
+    "Behavior Insight / Application": "Excellent in spiritual growth or paradigm innovation"
+  },
+  {
+    "Energy Code": "E300",
+    "Energy Code Name": "Return-to-Self Code",
+    "Core Expression / Trait": "After chaos, always finds personal truth",
+    "Behavior Insight / Application": "Anchored resilience; strong foundation for others too"
+  },
+  {
+    "Energy Code": "E301",
+    "Energy Code Name": "Voice Delay Pattern",
+    "Core Expression / Trait": "Holds back speech until emotionally safe",
+    "Behavior Insight / Application": "May miss chances, but deeply considered"
+  },
+  {
+    "Energy Code": "E302",
+    "Energy Code Name": "Decision Anchor",
+    "Core Expression / Trait": "Firm decision-making, clear choice-maker",
+    "Behavior Insight / Application": "Excellent for leadership, but may struggle with group input"
+  },
+  {
+    "Energy Code": "E303",
+    "Energy Code Name": "Social Mirror Field",
+    "Core Expression / Trait": "Reflects social norms and expectations",
+    "Behavior Insight / Application": "Can be a social chameleon; may lose personal identity"
+  },
+  {
+    "Energy Code": "E304",
+    "Energy Code Name": "Responsibility Surge",
+    "Core Expression / Trait": "Takes on too much, feels burdened",
+    "Behavior Insight / Application": "Strong sense of duty, but prone to burnout and people-pleasing"
+  },
+  {
+    "Energy Code": "E305",
+    "Energy Code Name": "Emotional Architect",
+    "Core Expression / Trait": "Structures feelings and emotional spaces",
+    "Behavior Insight / Application": "Good in therapy, but may intellectualize emotions too much"
+  },
+  {
+    "Energy Code": "E306",
+    "Energy Code Name": "Spiritual Grounder",
+    "Core Expression / Trait": "Connects spiritual insights to daily life",
+    "Behavior Insight / Application": "Practical mystic; can be a strong guide"
+  },
+  {
+    "Energy Code": "E307",
+    "Energy Code Name": "Pattern Seeker",
+    "Core Expression / Trait": "Obsesses over finding meaning in patterns",
+    "Behavior Insight / Application": "Great for research, data, but can get lost in conspiracy"
+  },
+  {
+    "Energy Code": "E308",
+    "Energy Code Name": "Self-Worth Protector",
+    "Core Expression / Trait": "Shields against criticism",
+    "Behavior Insight / Application": "Appears strong, but sensitive to judgment"
+  },
+  {
+    "Energy Code": "E309",
+    "Energy Code Name": "Inner Rebel",
+    "Core Expression / Trait": "Challenges authority, needs freedom",
+    "Behavior Insight / Application": "Innovative, but may clash with traditional systems"
+  },
+  {
+    "Energy Code": "E310",
+    "Energy Code Name": "Connection Weaver",
+    "Core Expression / Trait": "Brings people together",
+    "Behavior Insight / Application": "Natural networker; good for community building"
+  },
+  {
+    "Energy Code": "E311",
+    "Energy Code Name": "Future Fear Zone",
+    "Core Expression / Trait": "Anxious about what is to come",
+    "Behavior Insight / Application": "Needs grounding in the present; prone to worst-case scenarios"
+  },
+  {
+    "Energy Code": "E312",
+    "Energy Code Name": "Identity Fluidity",
+    "Core Expression / Trait": "Adapts identity to circumstances",
+    "Behavior Insight / Application": "Flexible, but may lack a core sense of self"
+  },
+  {
+    "Energy Code": "E313",
+    "Energy Code Name": "Creative Blocker",
+    "Core Expression / Trait": "Struggles with expressing originality",
+    "Behavior Insight / Application": "May feel stuck or uninspired; needs creative outlets"
+  },
+  {
+    "Energy Code": "E314",
+    "Energy Code Name": "Compassion Drive",
+    "Core Expression / Trait": "Motivated by empathy and kindness",
+    "Behavior Insight / Application": "Excellent in caregiving; risks emotional exhaustion"
+  },
+  {
+    "Energy Code": "E315",
+    "Energy Code Name": "Inner Child Healer",
+    "Core Expression / Trait": "Works on old pain points, inner wounds",
+    "Behavior Insight / Application": "Deeply reflective; can transform trauma into wisdom"
+  },
+  {
+    "Energy Code": "E316",
+    "Energy Code Name": "Strategic Retreat",
+    "Core Expression / Trait": "Withdraws to recharge or rethink",
+    "Behavior Insight / Application": "Needs solitude; not a social energy"
+  },
+  {
+    "Energy Code": "E317",
+    "Energy Code Name": "Intuitive Performer",
+    "Core Expression / Trait": "Acts based on gut feelings, not facts",
+    "Behavior Insight / Application": "Powerful but risky; needs to trust self"
+  },
+  {
+    "Energy Code": "E318",
+    "Energy Code Name": "Growth Resistor",
+    "Core Expression / Trait": "Fears change or discomfort",
+    "Behavior Insight / Application": "Prefers stability; avoids new challenges"
+  },
+  {
+    "Energy Code": "E319",
+    "Energy Code Name": "Authenticity Field",
+    "Core Expression / Trait": "Naturally draws others to truth",
+    "Behavior Insight / Application": "Trustworthy, but may be too blunt or direct"
+  },
+  {
+    "Energy Code": "E320",
+    "Energy Code Name": "Energetic Protector",
+    "Core Expression / Trait": "Defends against negative energy",
+    "Behavior Insight / Application": "Sensitive; needs to set boundaries"
+  },
+  {
+    "Energy Code": "E321",
+    "Energy Code Name": "Past-Driven Cycle",
+    "Core Expression / Trait": "Repeats old habits or relationships",
+    "Behavior Insight / Application": "Needs to break conscious patterns to move forward"
+  },
+  {
+    "Energy Code": "E322",
+    "Energy Code Name": "Spiritual Surrender",
+    "Core Expression / Trait": "Releases control to a higher power",
+    "Behavior Insight / Application": "Peaceful, but may become passive or aimless"
+  },
+  {
+    "Energy Code": "E323",
+    "Energy Code Name": "Creative Connector",
+    "Core Expression / Trait": "Links diverse ideas into new concepts",
+    "Behavior Insight / Application": "Excellent for innovation and problem-solving"
+  },
+  {
+    "Energy Code": "E324",
+    "Energy Code Name": "Emotional Clarity",
+    "Core Expression / Trait": "Understands feelings quickly and accurately",
+    "Behavior Insight / Application": "Good for mediation, but can be too detached"
+  },
+  {
+    "Energy Code": "E325",
+    "Energy Code Name": "Action Blocker",
+    "Core Expression / Trait": "Gets stuck in analysis paralysis",
+    "Behavior Insight / Application": "Needs clear deadlines and small steps to move forward"
+  },
+  {
+    "Energy Code": "E326",
+    "Energy Code Name": "Self-Criticism Loop",
+    "Core Expression / Trait": "Constant internal judgment",
+    "Behavior Insight / Application": "Motivated by perfectionism, but at risk of burnout"
+  },
+  {
+    "Energy Code": "E327",
+    "Energy Code Name": "Purpose Alignment",
+    "Core Expression / Trait": "Syncs actions with core values",
+    "Behavior Insight / Application": "Highly motivated, but may struggle in misaligned roles"
+  },
+  {
+    "Energy Code": "E328",
+    "Energy Code Name": "Emotional Resilience",
+    "Core Expression / Trait": "Bounces back from emotional setbacks",
+    "Behavior Insight / Application": "Strong leader or survivor; helps others through adversity"
+  },
+  {
+    "Energy Code": "E329",
+    "Energy Code Name": "Group Harmony Seeker",
+    "Core Expression / Trait": "Prioritizes peace over individual needs",
+    "Behavior Insight / Application": "Good for team morale, but may suppress conflict"
+  },
+  {
+    "Energy Code": "E330",
+    "Energy Code Name": "Inner Compass",
+    "Core Expression / Trait": "Has a strong sense of right and wrong",
+    "Behavior Insight / Application": "Guided by integrity, but may be inflexible"
+  },
+  {
+    "Energy Code": "E331",
+    "Energy Code Name": "Time-Bound Stress",
+    "Core Expression / Trait": "Feels pressure from deadlines",
+    "Behavior Insight / Application": "Can be a powerful motivator, but also a source of anxiety"
+  },
+  {
+    "Energy Code": "E332",
+    "Energy Code Name": "Creative Channel",
+    "Core Expression / Trait": "Allows ideas to flow freely",
+    "Behavior Insight / Application": "Artistic and expressive, but can be disorganized"
+  },
+  {
+    "Energy Code": "E333",
+    "Energy Code Name": "Energy Alchemist",
+    "Core Expression / Trait": "Transforms negative energy into positive",
+    "Behavior Insight / Application": "Healer or leader; can change the mood of a room"
+  },
+  {
+    "Energy Code": "E334",
+    "Energy Code Name": "Power Transfer",
+    "Core Expression / Trait": "Shares power easily with others",
+    "Behavior Insight / Application": "Excellent in collaborative roles; not a solo leader"
+  },
+  {
+    "Energy Code": "E335",
+    "Energy Code Name": "Emotional Barrier",
+    "Core Expression / Trait": "Puts up walls to protect feelings",
+    "Behavior Insight / Application": "Appears distant; needs trust to open up"
+  },
+  {
+    "Energy Code": "E336",
+    "Energy Code Name": "Strategic Patience",
+    "Core Expression / Trait": "Waits for the right moment to act",
+    "Behavior Insight / Application": "Effective planner; avoids impulsive decisions"
+  },
+  {
+    "Energy Code": "E337",
+    "Energy Code Name": "Relational Compass",
+    "Core Expression / Trait": "Guides others toward better relationships",
+    "Behavior Insight / Application": "Natural coach or mediator"
+  },
+  {
+    "Energy Code": "E338",
+    "Energy Code Name": "Unmet Needs Craving",
+    "Core Expression / Trait": "Seeks external validation for internal lacks",
+    "Behavior Insight / Application": "Prone to co-dependence or people-pleasing"
+  },
+  {
+    "Energy Code": "E339",
+    "Energy Code Name": "Joy-Finding Filter",
+    "Core Expression / Trait": "Focuses on positive aspects of situations",
+    "Behavior Insight / Application": "Optimistic; can be a morale booster"
+  },
+  {
+    "Energy Code": "E340",
+    "Energy Code Name": "Past-Release Code",
+    "Core Expression / Trait": "Successfully lets go of old trauma",
+    "Behavior Insight / Application": "Resilient and transformative"
+  },
+  {
+    "Energy Code": "E341",
+    "Energy Code Name": "Spiritual Empath",
+    "Core Expression / Trait": "Feels the energy of spaces or groups",
+    "Behavior Insight / Application": "Highly sensitive; needs to protect personal energy"
+  },
+  {
+    "Energy Code": "E342",
+    "Energy Code Name": "Action Flow",
+    "Core Expression / Trait": "Moves from idea to execution smoothly",
+    "Behavior Insight / Application": "Highly productive, but may miss reflection periods"
+  },
+  {
+    "Energy Code": "E343",
+    "Energy Code Name": "Purpose Seeker II",
+    "Core Expression / Trait": "Seeks higher meaning in all tasks",
+    "Behavior Insight / Application": "Motivated by mission; struggles with mundane work"
+  },
+  {
+    "Energy Code": "E344",
+    "Energy Code Name": "Social Intuition",
+    "Core Expression / Trait": "Reads social cues without conscious thought",
+    "Behavior Insight / Application": "Excellent in sales, HR, or community roles"
+  },
+  {
+    "Energy Code": "E345",
+    "Energy Code Name": "Boundary Builder",
+    "Core Expression / Trait": "Creates and maintains personal limits",
+    "Behavior Insight / Application": "Respects self and others; can be a strong leader"
+  },
+  {
+    "Energy Code": "E346",
+    "Energy Code Name": "Inner Architect",
+    "Core Expression / Trait": "Structures personal life and internal world",
+    "Behavior Insight / Application": "Organized and self-disciplined; good for solo work"
+  },
+  {
+    "Energy Code": "E347",
+    "Energy Code Name": "Emotional Expression",
+    "Core Expression / Trait": "Expresses feelings openly and clearly",
+    "Behavior Insight / Application": "Authentic and trustworthy, but can be too intense"
+  },
+  {
+    "Energy Code": "E348",
+    "Energy Code Name": "Creative Catalyst",
+    "Core Expression / Trait": "Sparks creativity in others",
+    "Behavior Insight / Application": "Mentor, coach, or teacher; not a solo artist"
+  },
+  {
+    "Energy Code": "E349",
+    "Energy Code Name": "Intuitive Decision-Maker",
+    "Core Expression / Trait": "Decides quickly based on feeling",
+    "Behavior Insight / Application": "Effective in crisis, but may lack a logical basis"
+  },
+  {
+    "Energy Code": "E350",
+    "Energy Code Name": "Legacy Protector",
+    "Core Expression / Trait": "Guards traditions and family memory",
+    "Behavior Insight / Application": "Honors the past; may resist change or innovation"
+  },
+  {
+    "Energy Code": "E351",
+    "Energy Code Name": "Boundary Disruptor",
+    "Core Expression / Trait": "Challenges established limits",
+    "Behavior Insight / Application": "Innovator, but may be seen as disrespectful"
+  },
+  {
+    "Energy Code": "E352",
+    "Energy Code Name": "Self-Trust Builder",
+    "Core Expression / Trait": "Rebuilds faith in oneself",
+    "Behavior Insight / Application": "Strong recovery energy; helps others gain confidence"
+  },
+  {
+    "Energy Code": "E353",
+    "Energy Code Name": "Emotional Amplifier II",
+    "Core Expression / Trait": "Magnifies feelings of self and others",
+    "Behavior Insight / Application": "Deep empathy, but prone to emotional overwhelm"
+  },
+  {
+    "Energy Code": "E354",
+    "Energy Code Name": "Social Anchor",
+    "Core Expression / Trait": "Provides stability in social groups",
+    "Behavior Insight / Application": "Trusted leader, but may be resistant to change"
+  },
+  {
+    "Energy Code": "E355",
+    "Energy Code Name": "Visionary Weaver",
+    "Core Expression / Trait": "Connects big ideas to practical steps",
+    "Behavior Insight / Application": "Strategic leader; can create change effectively"
+  },
+  {
+    "Energy Code": "E356",
+    "Energy Code Name": "Rebirth Alchemist",
+    "Core Expression / Trait": "Transforms crisis into a new beginning",
+    "Behavior Insight / Application": "Highly resilient, spiritual leader"
+  },
+  {
+    "Energy Code": "E357",
+    "Energy Code Name": "Relational Healer",
+    "Core Expression / Trait": "Repairs trust and intimacy",
+    "Behavior Insight / Application": "Therapist or coach; good for conflict resolution"
+  },
+  {
+    "Energy Code": "E358",
+    "Energy Code Name": "Purpose Architect",
+    "Core Expression / Trait": "Designs life around core mission",
+    "Behavior Insight / Application": "Visionary and driven; inspires others"
+  },
+  {
+    "Energy Code": "E359",
+    "Energy Code Name": "Soul Expression II",
+    "Core Expression / Trait": "Radiates authentic self-worth",
+    "Behavior Insight / Application": "Magnetic and inspiring; no need for external validation"
+  },
+  {
+    "Energy Code": "E360",
+    "Energy Code Name": "Final Integration",
+    "Core Expression / Trait": "Synthesis of all energies into a whole",
+    "Behavior Insight / Application": "Mastery of self and purpose; a rare and powerful state"
+  }
+]

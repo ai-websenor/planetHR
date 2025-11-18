@@ -12,8 +12,8 @@ export class Report extends Document {
   @Prop({ required: true })
   viewerRole: 'owner' | 'leader' | 'manager';
 
-  @Prop({ required: true, type: String })
-  content: string;
+  @Prop({ required: true, type: Object })
+  content: any;
 
   @Prop({ type: Object })
   metadata: {
@@ -31,6 +31,15 @@ export class Report extends Document {
 
   @Prop({ required: true })
   validUntil: Date;
+
+  @Prop({ default: 'HIGH' })
+  confidenceLevel: 'HIGH' | 'MEDIUM' | 'LOW';
+
+  @Prop()
+  energyCodeBase: string;
+
+  @Prop({ default: '1.0' })
+  version: string;
 
   @Prop({ required: true })
   organization: string;
