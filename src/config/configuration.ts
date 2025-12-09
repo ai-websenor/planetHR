@@ -1,5 +1,8 @@
+export type AppMode = 'production' | 'development' | 'test';
+
 export default () => ({
   port: parseInt(process.env.PORT || '3000', 10),
+  appMode: (process.env.APP_MODE || 'development') as AppMode,
   database: {
     uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/planetshr_dev',
   },

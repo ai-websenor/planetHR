@@ -23,6 +23,11 @@ import { EmailModule } from './modules/email/email.module';
 import { MastraModule } from './modules/mastra/mastra.module';
 import { HarmonicsModule } from './modules/harmonics/harmonics.module';
 import { ApiLogsModule } from './modules/api-logs/api-logs.module';
+import { UploadModule } from './modules/upload/upload.module';
+import { JobRolesModule } from './modules/job-roles/job-roles.module';
+import { OnboardingModule } from './modules/onboarding/onboarding.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { DocumentParserModule } from './modules/document-parser/document-parser.module';
 
 // Import guards
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
@@ -65,6 +70,11 @@ import { RolesGuard } from './common/guards/roles.guard';
     MastraModule,
     HarmonicsModule,
     ApiLogsModule,
+    UploadModule,
+    JobRolesModule,
+    OnboardingModule,
+    DashboardModule,
+    DocumentParserModule,
   ],
   controllers: [AppController],
   providers: [

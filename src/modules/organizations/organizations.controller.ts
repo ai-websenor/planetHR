@@ -53,6 +53,41 @@ export class OrganizationsController {
     };
   }
 
+  @Get('user-branches')
+  @Roles(UserRole.OWNER, UserRole.LEADER, UserRole.MANAGER)
+  @ApiOperation({
+    summary: 'Get user accessible branches',
+    description: 'Get branches that the current user can access based on their role. OWNER/LEADER see all branches, MANAGER sees only assigned branches.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'User branches retrieved successfully',
+  })
+  async getUserBranches(@User() currentUser: any) {
+    const result = await this.organizationsService.getUserAccessibleBranches(
+      new Types.ObjectId(currentUser.organizationId),
+      currentUser.role,
+      currentUser.assignedBranches || [],
+    );
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'User branches retrieved successfully',
+      data: {
+        user: {
+          id: currentUser.sub,
+          email: currentUser.email,
+          role: currentUser.role,
+          assignedBranches: currentUser.assignedBranches || [],
+          assignedDepartments: currentUser.assignedDepartments || [],
+        },
+        organization: result.organization,
+        accessibleBranches: result.branches,
+        canSwitchBranches: result.canSwitchBranches,
+      },
+    };
+  }
+
   @Post('branches')
   @Roles(UserRole.OWNER)
   @ApiOperation({

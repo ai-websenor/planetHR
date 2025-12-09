@@ -8,7 +8,6 @@ import {
   HttpCode,
   Req,
   Ip,
-  Headers,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -20,6 +19,8 @@ import type { Request } from 'express';
 import { AuthService } from './services/auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { SignupDto } from './dto/signup.dto';
+import { VerifyOtpDto, ResendOtpDto } from './dto/verify-otp.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
@@ -74,21 +75,159 @@ export class AuthController {
     status: HttpStatus.BAD_REQUEST,
     description: 'Invalid input or weak password',
   })
-  async register(
-    @Body() registerDto: RegisterDto,
-    @Ip() ipAddress: string,
-    @Headers('user-agent') userAgent: string,
-  ) {
-    const result = await this.authService.register(
-      registerDto,
-      ipAddress,
-      userAgent || 'unknown',
-    );
+  async register(@Body() registerDto: RegisterDto, @Ip() ipAddress: string) {
+    const result = await this.authService.register(registerDto, ipAddress);
 
     return {
       statusCode: HttpStatus.CREATED,
       message: 'Registration successful',
       data: result,
+    };
+  }
+
+  @Public()
+  @Post('signup')
+  @ApiOperation({
+    summary: 'Signup new user',
+    description: 'Create a new user account with OTP verification. Sends 6-digit OTP to email for verification. In test mode (APP_MODE=test), OTP is always 123456.',
+  })
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    description: 'Signup successful, OTP sent to email',
+    schema: {
+      example: {
+        statusCode: 201,
+        message: 'OTP sent to your email. Please verify to continue.',
+        data: {
+          email: 'john@example.com',
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: HttpStatus.CONFLICT,
+    description: 'User with this email already exists and is verified',
+    schema: {
+      example: {
+        statusCode: 409,
+        message: 'User with this email already exists',
+      },
+    },
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Validation Error',
+    schema: {
+      example: {
+        statusCode: 400,
+        error: 'Validation Error',
+        message: ['Password must contain uppercase, lowercase, number, and special character'],
+      },
+    },
+  })
+  async signup(@Body() signupDto: SignupDto) {
+    const result = await this.authService.signup(signupDto);
+
+    return {
+      statusCode: HttpStatus.CREATED,
+      message: result.message,
+      data: { email: result.email },
+    };
+  }
+
+  @Public()
+  @Post('otp-verify')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Verify OTP',
+    description: 'Verify email using OTP sent during signup. Returns JWT tokens on success.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'OTP verified successfully',
+    schema: {
+      example: {
+        statusCode: 200,
+        message: 'Email verified successfully',
+        data: {
+          user: {
+            id: '507f1f77bcf86cd799439011',
+            email: 'john@example.com',
+            firstName: 'John',
+            lastName: 'Doe',
+            role: 'OWNER',
+          },
+          tokens: {
+            accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+            refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+          },
+          onboarding: {
+            isCompleted: false,
+            currentStep: 0,
+          },
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Invalid or expired OTP',
+    schema: {
+      example: {
+        statusCode: 400,
+        message: 'Invalid OTP',
+      },
+    },
+  })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User not found',
+  })
+  async verifyOtp(@Body() verifyOtpDto: VerifyOtpDto, @Ip() ipAddress: string) {
+    const result = await this.authService.verifyOtp(
+      verifyOtpDto.email,
+      verifyOtpDto.otp,
+      ipAddress,
+    );
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Email verified successfully',
+      data: result,
+    };
+  }
+
+  @Public()
+  @Post('resend-otp')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Resend OTP',
+    description: 'Resend OTP to email for verification.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'OTP resent successfully',
+    schema: {
+      example: {
+        statusCode: 200,
+        message: 'OTP has been resent to your email',
+      },
+    },
+  })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User not found',
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Email already verified',
+  })
+  async resendOtp(@Body() resendOtpDto: ResendOtpDto) {
+    const result = await this.authService.resendOtp(resendOtpDto.email);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: result.message,
     };
   }
 
@@ -118,6 +257,10 @@ export class AuthController {
             accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
             refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
           },
+          onboarding: {
+            isCompleted: true,
+            currentStep: 4,
+          },
         },
       },
     },
@@ -126,16 +269,8 @@ export class AuthController {
     status: HttpStatus.UNAUTHORIZED,
     description: 'Invalid credentials or account locked',
   })
-  async login(
-    @Body() loginDto: LoginDto,
-    @Ip() ipAddress: string,
-    @Headers('user-agent') userAgent: string,
-  ) {
-    const result = await this.authService.login(
-      loginDto,
-      ipAddress,
-      userAgent || 'unknown',
-    );
+  async login(@Body() loginDto: LoginDto, @Ip() ipAddress: string) {
+    const result = await this.authService.login(loginDto, ipAddress);
 
     return {
       statusCode: HttpStatus.OK,
@@ -189,12 +324,10 @@ export class AuthController {
   async refreshToken(
     @Body() refreshTokenDto: RefreshTokenDto,
     @Ip() ipAddress: string,
-    @Headers('user-agent') userAgent: string,
   ) {
     const tokens = await this.authService.refreshToken(
       refreshTokenDto.refreshToken,
       ipAddress,
-      userAgent || 'unknown',
     );
 
     return {

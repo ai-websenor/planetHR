@@ -14,6 +14,7 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { RefreshToken, RefreshTokenSchema } from './schemas/refresh-token.schema';
 import { UsersModule } from '../users/users.module';
 import { OrganizationsModule } from '../organizations/organizations.module';
+import { EmailModule } from '../email/email.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { OrganizationsModule } from '../organizations/organizations.module';
     ]),
     UsersModule,
     OrganizationsModule,
+    EmailModule,
   ],
   controllers: [AuthController],
   providers: [

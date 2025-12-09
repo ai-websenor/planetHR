@@ -31,6 +31,21 @@ export class User extends Document {
   @Prop({ required: true, trim: true })
   lastName: string;
 
+  @Prop({ trim: true })
+  phone: string;
+
+  @Prop({ trim: true })
+  dialingCode: string;
+
+  @Prop({ type: Date })
+  termsAcceptedAt: Date;
+
+  @Prop({ select: false })
+  otpCode: string;
+
+  @Prop({ type: Date, select: false })
+  otpExpires: Date;
+
   @Prop({ required: true, enum: UserRole, index: true })
   role: UserRole;
 

@@ -21,9 +21,6 @@ export class RefreshToken extends Document {
   @Prop({ required: true })
   ipAddress: string;
 
-  @Prop({ required: true })
-  userAgent: string;
-
   @Prop({ default: false })
   isRevoked: boolean;
 

@@ -1,52 +1,37 @@
-# Multi-stage build optimized for pnpm
-FROM node:20-alpine AS base
-
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# ---------- Base Image ----------
+FROM node:20-slim AS base
+RUN corepack enable && corepack prepare pnpm@10.10.0 --activate
 
 WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
 
-# Copy package files
-COPY package.json pnpm-lock.yaml* ./
-
-# Dependencies stage
+# ---------- Dependencies (only PROD deps) ----------
 FROM base AS deps
-RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install --prod --frozen-lockfile
 
-# Build stage
+# ---------- Build ----------
 FROM base AS build
-RUN pnpm install --frozen-lockfile
 COPY . .
+# Install ALL deps for building (including devDependencies for nest CLI)
+RUN pnpm install --frozen-lockfile
 RUN pnpm build
+# Verify the build succeeded
+RUN ls -la dist/ && test -f dist/main.js
 
-# Production stage
-FROM node:20-alpine AS production
+# ---------- Production Image ----------
+FROM node:20-slim AS production
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@10.10.0 --activate
 
 WORKDIR /app
 
-# Create non-root user
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nestjs -u 1001
+RUN addgroup --system nodejs && adduser --system nestjs
 
-# Copy dependencies
-COPY --from=deps --chown=nestjs:nodejs /app/node_modules ./node_modules
-COPY --from=build --chown=nestjs:nodejs /app/dist ./dist
-COPY --from=build --chown=nestjs:nodejs /app/package.json ./package.json
-
-# Create uploads directory
-RUN mkdir -p uploads && chown -R nestjs:nodejs uploads
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/harmonics.json ./harmonics.json
+COPY package.json ./
 
 USER nestjs
-
-# Expose port
-EXPOSE 3000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
-
-# Start the application
+EXPOSE 3003
 CMD ["node", "dist/main.js"]

@@ -182,6 +182,114 @@ export class UsersService {
   }
 
   /**
+   * Find user by email with OTP fields
+   */
+  async findByEmailWithOtp(email: string): Promise<User | null> {
+    return this.userModel
+      .findOne({ email: email.toLowerCase(), deletedAt: null })
+      .select('+otpCode +otpExpires')
+      .exec();
+  }
+
+  /**
+   * Create user with OTP (for signup flow)
+   * If user exists but is unverified (PENDING_VERIFICATION), update their data and resend OTP
+   */
+  async createWithOtp(data: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    dialingCode: string;
+    termsAcceptedAt: Date;
+    otpCode: string;
+    otpExpires: Date;
+    role: UserRole;
+    organizationId: Types.ObjectId;
+  }): Promise<{ user: User; isReregistration: boolean }> {
+    // Check if user already exists
+    const existingUser = await this.userModel
+      .findOne({
+        email: data.email.toLowerCase(),
+        deletedAt: null,
+      })
+      .select('+otpCode +otpExpires');
+
+    if (existingUser) {
+      // If user exists but is not verified, allow re-registration
+      if (existingUser.status === UserStatus.PENDING_VERIFICATION) {
+        // Hash new password
+        const passwordHash = await bcrypt.hash(data.password, 12);
+
+        // Update existing unverified user with new data
+        existingUser.passwordHash = passwordHash;
+        existingUser.firstName = data.firstName;
+        existingUser.lastName = data.lastName;
+        existingUser.phone = data.phone;
+        existingUser.dialingCode = data.dialingCode;
+        existingUser.termsAcceptedAt = data.termsAcceptedAt;
+        existingUser.otpCode = data.otpCode;
+        existingUser.otpExpires = data.otpExpires;
+        existingUser.organizationId = data.organizationId;
+
+        await existingUser.save();
+        return { user: existingUser, isReregistration: true };
+      }
+
+      // User exists and is verified - don't allow re-registration
+      throw new ConflictException('User with this email already exists');
+    }
+
+    // Hash password
+    const passwordHash = await bcrypt.hash(data.password, 12);
+
+    // Create user with pending verification
+    const user = new this.userModel({
+      email: data.email.toLowerCase(),
+      passwordHash,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      phone: data.phone,
+      dialingCode: data.dialingCode,
+      termsAcceptedAt: data.termsAcceptedAt,
+      otpCode: data.otpCode,
+      otpExpires: data.otpExpires,
+      role: data.role,
+      organizationId: data.organizationId,
+      status: UserStatus.PENDING_VERIFICATION,
+      assignedBranches: [],
+      assignedDepartments: [],
+    });
+
+    return { user: await user.save(), isReregistration: false };
+  }
+
+  /**
+   * Activate user after OTP verification
+   */
+  async activateUser(userId: Types.ObjectId): Promise<void> {
+    await this.userModel.updateOne(
+      { _id: userId },
+      {
+        status: UserStatus.ACTIVE,
+        otpCode: null,
+        otpExpires: null,
+      },
+    );
+  }
+
+  /**
+   * Update OTP for user
+   */
+  async updateOtp(userId: Types.ObjectId, otpCode: string, otpExpires: Date): Promise<void> {
+    await this.userModel.updateOne(
+      { _id: userId },
+      { otpCode, otpExpires },
+    );
+  }
+
+  /**
    * Update user
    */
   async update(

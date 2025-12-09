@@ -23,6 +23,24 @@ export class CreateDepartmentDto {
   description?: string;
 
   @ApiPropertyOptional({
+    description: 'Department culture',
+    example: 'Agile and research-oriented environment',
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(1000)
+  culture?: string;
+
+  @ApiPropertyOptional({
+    description: 'Department goals',
+    example: 'Improve automation, deliver scalable software solutions',
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(1000)
+  goals?: string;
+
+  @ApiPropertyOptional({
     description: 'Manager user ID',
     example: '507f1f77bcf86cd799439011',
   })

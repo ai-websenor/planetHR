@@ -14,10 +14,12 @@ import { OrganizationsService } from '../../organizations/organizations.service'
 import { PasswordService } from './password.service';
 import { SessionService } from './session.service';
 import { TokenBlacklistService } from './token-blacklist.service';
+import { AuthEmailService } from '../../email/services/auth-email.service';
 import { User, UserRole, UserStatus } from '../../users/schemas/user.schema';
 import { RefreshToken } from '../schemas/refresh-token.schema';
 import { RegisterDto } from '../dto/register.dto';
 import { LoginDto } from '../dto/login.dto';
+import { SignupDto } from '../dto/signup.dto';
 
 export interface JwtPayload {
   sub: string; // userId
@@ -36,14 +38,29 @@ export interface AuthTokens {
   refreshToken: string;
 }
 
+export interface OnboardingStatus {
+  isCompleted: boolean;
+  currentStep: number;
+}
+
+export interface AuthResult {
+  user: User;
+  tokens: AuthTokens;
+  onboarding: OnboardingStatus;
+}
+
 @Injectable()
 export class AuthService {
+  private readonly OTP_EXPIRY_MINUTES = 10;
+  private readonly TEST_OTP = '123456';
+
   constructor(
     private readonly usersService: UsersService,
     private readonly organizationsService: OrganizationsService,
     private readonly passwordService: PasswordService,
     private readonly sessionService: SessionService,
     private readonly tokenBlacklistService: TokenBlacklistService,
+    private readonly authEmailService: AuthEmailService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     @InjectModel(RefreshToken.name) private refreshTokenModel: Model<RefreshToken>,
@@ -55,7 +72,6 @@ export class AuthService {
   async register(
     registerDto: RegisterDto,
     ipAddress: string,
-    userAgent: string,
   ): Promise<{ user: User; organization: any; tokens: AuthTokens }> {
     // Check if user already exists
     const existingUser = await this.usersService.findByEmail(registerDto.email);
@@ -99,9 +115,196 @@ export class AuthService {
     await user.save();
 
     // Generate tokens
-    const tokens = await this.generateTokens(user, ipAddress, userAgent);
+    const tokens = await this.generateTokens(user, ipAddress);
 
     return { user, organization, tokens };
+  }
+
+  /**
+   * Signup new user (creates pending verification user and sends OTP)
+   * If user exists but is unverified, updates their data and resends OTP
+   */
+  async signup(signupDto: SignupDto): Promise<{ message: string; email: string }> {
+    // Validate terms acceptance
+    if (!signupDto.termsAccepted) {
+      throw new BadRequestException('You must accept the terms and conditions');
+    }
+
+    // Validate password strength
+    const passwordValidation = this.passwordService.validatePasswordStrength(signupDto.password);
+    if (!passwordValidation.valid) {
+      throw new BadRequestException(passwordValidation.errors.join(', '));
+    }
+
+    // Split name into firstName and lastName
+    const nameParts = signupDto.name.trim().split(' ');
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ') || firstName;
+
+    // Generate OTP
+    const otp = this.generateOtp();
+    const otpExpires = new Date(Date.now() + this.OTP_EXPIRY_MINUTES * 60 * 1000);
+
+    // Check if user exists and is unverified - reuse their organization
+    const existingUser = await this.usersService.findByEmail(signupDto.email);
+    let organizationId: Types.ObjectId;
+
+    if (existingUser && existingUser.status === UserStatus.PENDING_VERIFICATION) {
+      // Reuse existing organization for re-registration
+      organizationId = existingUser.organizationId;
+    } else {
+      // Create new organization (minimal - will be completed during onboarding)
+      const organization = await this.organizationsService.create({
+        name: `${firstName}'s Organization`,
+      });
+      organizationId = organization._id as Types.ObjectId;
+    }
+
+    // Create or update user with pending verification
+    const { user, isReregistration } = await this.usersService.createWithOtp({
+      email: signupDto.email,
+      password: signupDto.password,
+      firstName,
+      lastName,
+      phone: signupDto.phone,
+      dialingCode: signupDto.dialing_code,
+      termsAcceptedAt: new Date(),
+      otpCode: otp,
+      otpExpires,
+      role: UserRole.OWNER,
+      organizationId,
+    });
+
+    // Send OTP email (skip in test mode)
+    if (!this.isTestMode()) {
+      await this.authEmailService.sendOtpEmail(signupDto.email, {
+        userName: firstName,
+        otp,
+        expiryMinutes: this.OTP_EXPIRY_MINUTES,
+      });
+    }
+
+    const baseMessage = this.isTestMode()
+      ? `Test mode: Use OTP ${this.TEST_OTP} to verify`
+      : 'OTP sent to your email. Please verify to continue.';
+
+    return {
+      message: isReregistration
+        ? `${baseMessage} (Previous unverified registration updated)`
+        : baseMessage,
+      email: signupDto.email,
+    };
+  }
+
+  /**
+   * Verify OTP and activate user
+   */
+  async verifyOtp(
+    email: string,
+    otp: string,
+    ipAddress: string,
+  ): Promise<AuthResult> {
+    const user = await this.usersService.findByEmailWithOtp(email);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    if (user.status === UserStatus.ACTIVE) {
+      throw new BadRequestException('Email is already verified');
+    }
+
+    if (!user.otpCode || !user.otpExpires) {
+      throw new BadRequestException('No OTP request found. Please request a new OTP.');
+    }
+
+    if (new Date() > user.otpExpires) {
+      throw new BadRequestException('OTP has expired. Please request a new OTP.');
+    }
+
+    if (user.otpCode !== otp) {
+      throw new BadRequestException('Invalid OTP');
+    }
+
+    // Activate user and clear OTP
+    await this.usersService.activateUser(user._id as Types.ObjectId);
+
+    // Send welcome email (skip in test mode)
+    if (!this.isTestMode()) {
+      await this.authEmailService.sendWelcomeEmail(email, {
+        userName: user.firstName,
+      });
+    }
+
+    // Generate tokens
+    const activatedUser = await this.usersService.findById(user._id as Types.ObjectId);
+    const tokens = await this.generateTokens(activatedUser, ipAddress);
+
+    // Get onboarding status
+    const organization = await this.organizationsService.findById(activatedUser.organizationId);
+    const onboarding = {
+      isCompleted: organization.onboardingCompleted,
+      currentStep: organization.onboardingStep,
+    };
+
+    return { user: activatedUser, tokens, onboarding };
+  }
+
+  /**
+   * Resend OTP to user
+   */
+  async resendOtp(email: string): Promise<{ message: string }> {
+    const user = await this.usersService.findByEmail(email);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    if (user.status === UserStatus.ACTIVE) {
+      throw new BadRequestException('Email is already verified');
+    }
+
+    // Generate new OTP
+    const otp = this.generateOtp();
+    const otpExpires = new Date(Date.now() + this.OTP_EXPIRY_MINUTES * 60 * 1000);
+
+    // Update user with new OTP
+    await this.usersService.updateOtp(user._id as Types.ObjectId, otp, otpExpires);
+
+    // Send OTP email (skip in test mode)
+    if (!this.isTestMode()) {
+      await this.authEmailService.sendOtpEmail(email, {
+        userName: user.firstName,
+        otp,
+        expiryMinutes: this.OTP_EXPIRY_MINUTES,
+      });
+    }
+
+    return {
+      message: this.isTestMode()
+        ? `Test mode: Use OTP ${this.TEST_OTP} to verify`
+        : 'OTP has been resent to your email',
+    };
+  }
+
+  /**
+   * Generate 6-digit OTP (returns fixed OTP in test mode)
+   */
+  private generateOtp(): string {
+    const appMode = this.configService.get<string>('appMode');
+
+    if (appMode === 'test') {
+      return this.TEST_OTP;
+    }
+
+    return Math.floor(100000 + Math.random() * 900000).toString();
+  }
+
+  /**
+   * Check if app is in test mode
+   */
+  private isTestMode(): boolean {
+    return this.configService.get<string>('appMode') === 'test';
   }
 
   /**
@@ -150,8 +353,7 @@ export class AuthService {
   async login(
     loginDto: LoginDto,
     ipAddress: string,
-    userAgent: string,
-  ): Promise<{ user: User; tokens: AuthTokens }> {
+  ): Promise<AuthResult> {
     const user = await this.validateUser(loginDto.email, loginDto.password);
 
     if (!user) {
@@ -162,13 +364,20 @@ export class AuthService {
     await this.usersService.updateLastLogin(user._id as Types.ObjectId);
 
     // Generate tokens
-    const tokens = await this.generateTokens(user, ipAddress, userAgent);
+    const tokens = await this.generateTokens(user, ipAddress);
+
+    // Get onboarding status
+    const organization = await this.organizationsService.findById(user.organizationId);
+    const onboarding = {
+      isCompleted: organization.onboardingCompleted,
+      currentStep: organization.onboardingStep,
+    };
 
     // Remove password from response
     const userObject = user.toObject();
     delete userObject.passwordHash;
 
-    return { user: userObject as User, tokens };
+    return { user: userObject as User, tokens, onboarding };
   }
 
   /**
@@ -200,7 +409,6 @@ export class AuthService {
   async refreshToken(
     refreshTokenString: string,
     ipAddress: string,
-    userAgent: string,
   ): Promise<AuthTokens> {
     // Find refresh token
     const refreshToken = await this.refreshTokenModel.findOne({
@@ -221,7 +429,7 @@ export class AuthService {
     await refreshToken.save();
 
     // Generate new tokens
-    const tokens = await this.generateTokens(user, ipAddress, userAgent);
+    const tokens = await this.generateTokens(user, ipAddress);
 
     // Store the replacement token reference
     refreshToken.replacedByToken = tokens.refreshToken;
@@ -236,7 +444,6 @@ export class AuthService {
   private async generateTokens(
     user: User,
     ipAddress: string,
-    userAgent: string,
   ): Promise<AuthTokens> {
     // Create session
     const sessionId = await this.sessionService.createSession(
@@ -247,7 +454,6 @@ export class AuthService {
       user.assignedBranches,
       user.assignedDepartments,
       ipAddress,
-      userAgent,
     );
 
     const userId = (user._id as Types.ObjectId).toString();
@@ -287,7 +493,6 @@ export class AuthService {
       organizationId: user.organizationId,
       expiresAt: refreshTokenExpiry,
       ipAddress,
-      userAgent,
     });
 
     await refreshToken.save();
@@ -430,8 +635,7 @@ export class AuthService {
       const sessionValidation = await this.sessionService.validateSession(
         payload.sub,
         payload.sessionId,
-        '', // IP address should be passed from request
-        '', // User agent should be passed from request
+        '', // IP address validation (optional)
       );
 
       if (!sessionValidation.valid) {

@@ -285,4 +285,60 @@ export class OrganizationsService {
       { $inc: { aiChatUsageCount: 1 } },
     );
   }
+
+  /**
+   * Get user accessible branches based on role
+   * OWNER and LEADER can see all branches
+   * MANAGER can only see their assigned branches
+   */
+  async getUserAccessibleBranches(
+    organizationId: Types.ObjectId,
+    userRole: string,
+    assignedBranchIds: string[],
+  ): Promise<{
+    organization: { id: string; name: string };
+    branches: Branch[];
+    canSwitchBranches: boolean;
+  }> {
+    const organization = await this.findById(organizationId);
+    const activeBranches = this.getActiveBranches(organization);
+
+    // OWNER and LEADER can see all branches
+    if (userRole === 'OWNER' || userRole === 'LEADER') {
+      return {
+        organization: {
+          id: (organization._id as any).toString(),
+          name: organization.name,
+        },
+        branches: activeBranches,
+        canSwitchBranches: true,
+      };
+    }
+
+    // MANAGER can only see their assigned branches
+    if (assignedBranchIds && assignedBranchIds.length > 0) {
+      const filteredBranches = activeBranches.filter(branch =>
+        assignedBranchIds.includes((branch._id as any).toString()),
+      );
+
+      return {
+        organization: {
+          id: (organization._id as any).toString(),
+          name: organization.name,
+        },
+        branches: filteredBranches,
+        canSwitchBranches: filteredBranches.length > 1,
+      };
+    }
+
+    // No assigned branches - return empty
+    return {
+      organization: {
+        id: (organization._id as any).toString(),
+        name: organization.name,
+      },
+      branches: [],
+      canSwitchBranches: false,
+    };
+  }
 }

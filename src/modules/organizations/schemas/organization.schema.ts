@@ -16,6 +16,17 @@ export enum SubscriptionStatus {
   PAST_DUE = 'PAST_DUE',
 }
 
+export enum CompanyType {
+  SOLE_PROPRIETORSHIP = 'Sole Proprietorship',
+  PARTNERSHIP = 'Partnership',
+  LLP = 'Limited Liability Partnership (LLP)',
+  PRIVATE_LIMITED = 'Private Limited Company (Pvt Ltd)',
+  PUBLIC_LIMITED = 'Public Limited Company',
+  OPC = 'One Person Company (OPC)',
+  SECTION_8 = 'Section 8 Company (Non-Profit)',
+  HUF = 'Hindu Undivided Family (HUF)',
+}
+
 @Schema({ _id: true })
 export class Department {
   @Prop({ type: Types.ObjectId, auto: true })
@@ -26,6 +37,12 @@ export class Department {
 
   @Prop({ trim: true })
   description: string;
+
+  @Prop({ trim: true })
+  culture: string;
+
+  @Prop({ trim: true })
+  goals: string;
 
   @Prop({ type: Types.ObjectId, ref: 'User' })
   managerId: Types.ObjectId;
@@ -39,6 +56,13 @@ export class Department {
 
 export const DepartmentSchema = SchemaFactory.createForClass(Department);
 
+export enum OfficeType {
+  HEADQUARTER = 'Headquarter',
+  BRANCH_OFFICE = 'Branch Office',
+  REGIONAL_OFFICE = 'Regional Office',
+  SATELLITE_OFFICE = 'Satellite Office',
+}
+
 @Schema({ _id: true })
 export class Branch {
   @Prop({ type: Types.ObjectId, auto: true })
@@ -46,6 +70,9 @@ export class Branch {
 
   @Prop({ required: true, trim: true })
   name: string;
+
+  @Prop({ enum: OfficeType, default: OfficeType.BRANCH_OFFICE })
+  officeType: OfficeType;
 
   @Prop({ trim: true })
   address: string;
@@ -89,7 +116,25 @@ export class Organization extends Document {
   name: string;
 
   @Prop({ trim: true })
+  businessCategory: string;
+
+  @Prop({ trim: true })
   industry: string;
+
+  @Prop({ trim: true })
+  subIndustry: string;
+
+  @Prop({ trim: true })
+  companyTurnover: string;
+
+  @Prop({ trim: true })
+  employeeSize: string;
+
+  @Prop({ trim: true })
+  companyCulture: string;
+
+  @Prop({ enum: CompanyType, trim: true })
+  companyType: CompanyType;
 
   @Prop({ trim: true })
   website: string;
@@ -99,6 +144,18 @@ export class Organization extends Document {
 
   @Prop({ trim: true })
   logo: string;
+
+  @Prop({ trim: true })
+  registrationDocumentUrl: string;
+
+  @Prop({ trim: true })
+  companyProfileDocumentUrl: string;
+
+  @Prop({ type: Number, default: 0 })
+  onboardingStep: number;
+
+  @Prop({ type: Boolean, default: false })
+  onboardingCompleted: boolean;
 
   @Prop({ type: [BranchSchema], default: [] })
   branches: Branch[];
@@ -135,6 +192,9 @@ export class Organization extends Document {
 
   @Prop({ type: Object, default: {} })
   settings: Record<string, any>;
+
+  @Prop({ type: [Types.ObjectId], ref: 'ParsedDocument', default: [] })
+  parsedDocuments: Types.ObjectId[];
 
   @Prop({ default: true })
   isActive: boolean;

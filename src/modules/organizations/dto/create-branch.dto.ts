@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsOptional, IsEmail, MinLength, MaxLength } from 'class-validator';
+import { IsString, IsOptional, IsEmail, IsEnum, MinLength, MaxLength } from 'class-validator';
+import { OfficeType } from '../schemas/organization.schema';
 
 export class CreateBranchDto {
   @ApiProperty({
@@ -12,6 +13,15 @@ export class CreateBranchDto {
   @MinLength(2)
   @MaxLength(100)
   name: string;
+
+  @ApiPropertyOptional({
+    description: 'Office type',
+    example: 'Headquarter',
+    enum: OfficeType,
+  })
+  @IsOptional()
+  @IsEnum(OfficeType)
+  officeType?: OfficeType;
 
   @ApiPropertyOptional({
     description: 'Branch address',

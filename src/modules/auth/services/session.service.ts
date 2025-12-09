@@ -15,7 +15,6 @@ export interface SessionData {
   createdAt: Date;
   lastActivityAt: Date;
   ipAddress: string;
-  userAgent: string;
 }
 
 @Injectable()
@@ -42,7 +41,6 @@ export class SessionService {
     assignedBranches: Types.ObjectId[],
     assignedDepartments: Types.ObjectId[],
     ipAddress: string,
-    userAgent: string,
   ): Promise<string> {
     const sessionId = uuidv4();
     const sessionData: SessionData = {
@@ -56,7 +54,6 @@ export class SessionService {
       createdAt: new Date(),
       lastActivityAt: new Date(),
       ipAddress,
-      userAgent,
     };
 
     const sessionKey = this.getSessionKey(userId.toString(), sessionId);
@@ -153,13 +150,12 @@ export class SessionService {
   }
 
   /**
-   * Validate session against IP and User-Agent (hijacking detection)
+   * Validate session against IP (hijacking detection)
    */
   async validateSession(
     userId: string,
     sessionId: string,
     ipAddress: string,
-    userAgent: string,
   ): Promise<{ valid: boolean; reason?: string }> {
     const session = await this.getSession(userId, sessionId);
 
@@ -168,13 +164,8 @@ export class SessionService {
     }
 
     // Check for IP address mismatch (potential hijacking)
-    if (session.ipAddress !== ipAddress) {
+    if (ipAddress && session.ipAddress !== ipAddress) {
       return { valid: false, reason: 'IP address mismatch - potential session hijacking' };
-    }
-
-    // Check for User-Agent mismatch
-    if (session.userAgent !== userAgent) {
-      return { valid: false, reason: 'User-Agent mismatch - potential session hijacking' };
     }
 
     return { valid: true };

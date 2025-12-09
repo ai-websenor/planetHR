@@ -4,7 +4,7 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "${PORT:-3003}:${PORT:-3003}"
     environment:
       - NODE_ENV=production
       - MONGODB_URI=mongodb://mongo:27017/planetshr
@@ -16,6 +16,8 @@ services:
     volumes:
       - ./uploads:/app/uploads
     restart: unless-stopped
+    env_file:
+      - .env
 
   mongo:
     image: mongo:7
